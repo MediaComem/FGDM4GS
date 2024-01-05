@@ -1,0 +1,26 @@
+INTERLIS 2.3;
+
+!! Version | Date       | Who     | Modification
+!!-------------------------------------------------------------------------------------------
+!! 1.O     | 2024-01-04 | HEIG-VD | - Création du modèle
+
+MODEL IVS_V2_1_gm
+AT "mailto:maxime.collombin@heig-vd.ch"
+  VERSION "2024-01-04" =
+  IMPORTS IVS_V2_1_d;
+  IMPORTS StandardSymbology;
+
+  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    OBJECTS OF SymbolSign: A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T
+    OBJECTS OF PolylineSign: SIGLIN_103,SIGLIN_102,SIGLIN_101,SIGLIN_203,SIGLIN_202,SIGLIN_201,SIGLIN_303,SIGLIN_302,SIGLIN_301;
+    
+  TOPIC Graphics =
+    DEPENDS ON IVS_V2_1_d.IVS_Ik_d;
+
+    !! GRAPHIC Polyline_Graphics
+    !!   BASED ON  =
+    !! END Polyline_Graphics;
+
+  END Graphics;
+
+END IVS_V2_1_gm.

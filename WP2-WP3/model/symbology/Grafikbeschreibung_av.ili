@@ -1,0 +1,515 @@
+INTERLIS 2.3;
+
+!! Version | Date       | Who            | Modification
+!!--------------------------------------------------------------------------------------------------
+!! 1.0     | 2007-06-01 | Maja Bärtschi  | Version initiale;
+!! 2.O     | 2023-12-22 | HEIG-VD        | Mise à jour des références aux modèles de données:
+!!         |            |                | - DM.01-AV-CH_LV03_24d_ili2 au lieu de DM01AVCH24D;
+
+CONTRACTED MODEL Grafikbeschreibung_av
+AT "http://www."
+VERSION "2007-06-01" =
+IMPORTS DM.01-AV-CH_LV03_24d_ili2;
+IMPORTS StandardSymbology;
+SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+OBJECTS OF SurfaceSign: GeroellSand
+OBJECTS OF PolylineSign: Bergwerk
+OBJECTS OF SymbolSign: Einzelbaum
+OBJECTS OF TextSign: Gelaendename;
+!!Fixpunkte
+TOPIC Fixpunkt1Graphics =
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.FixpunkteKategorie1;
+GRAPHIC Lagefixpunkt1_Graphics
+BASED ON DM.01-AV-CH_LV03_24d_ili2.FixpunkteKategorie1.LFP1 =
+LFP1 OF StandardSymbology.StandardSigns.SymbolSign:(
+Sign := {Lagefixpunkt};
+Geometry := Pos ->Pos;
+Scale := 0;
+Rotation := Symbol ->Ori;
+Priority := 1004);
+END Lagefixpunkt1_Graphics;
+GRAPHIC Hoehefixpunkt1_Graphics
+BASED ON DM.01-AV-CH_LV03_24d_ili2.FixpunkteKategorie1.HFP1 =
+HFP1 OF StandardSymbology.StandardSigns.SymbolSign:(
+Sign := {Hoehenfixpunkt};
+Geometry := Pos -> Pos;
+Priority := 1003);
+END Hoehefixpunkt1_Graphics;
+END Fixpunkt1Graphics;
+TOPIC Fixpunkte2_Graphics =
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.FixpunkteKategorie2;
+GRAPHIC Lagefixpunkt2_Graphics
+BASED ON DM.01-AV-CH_LV03_24d_ili2.FixpunkteKategorie2.LFP2 =
+LFP2 OF StandardSymbology.StandardSigns.SymbolSign:(
+Sign := {Lagefixpunkt};
+Geometry := Pos -> Pos;
+Scale := 0;
+Rotation := Symbol ->Ori;
+Priority := 1002);
+END Lagefixpunkt2_Graphics;
+GRAPHIC Hoehefixpunkt2_Graphics
+BASED ON DM.01-AV-CH_LV03_24d_ili2.FixpunkteKategorie2.HFP2 =
+HFP2 OF StandardSymbology.StandardSigns.SymbolSign:(
+Sign := {Hoehenfixpunkt};
+Geometry := Pos -> Pos;
+Priority :=1001 );
+END Hoehefixpunkt2_Graphics;
+END Fixpunkte2_Graphics;
+TOPIC Bodenbedeckung =
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Bodenbedeckung;
+GRAPHIC BodenFlaeche
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Bodenbedeckung.BoFlaeche =
+Gebaeude OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #Gebaeude (
+Sign := {Gebaeude};
+Geometry := Geometrie;
+Priority :=200);
+Strasse OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #befestigt.Strasse_Weg (
+Sign := {Strasse};
+Geometry := Geometrie;
+Priority := 200);
+Troittoir OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #befestigt.Trottoir (
+Sign := {Trottoir};
+Geometry := Geometrie;
+Priority := 200);
+Verkehrsinsel OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #befestigt.Verkehrsinsel (
+Sign := {Verkehrsinsel};
+Geometry := Geometrie;
+Priority := 200);
+Bahn OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #befestigt.Bahn (
+Sign := {Bahn};
+Geometry := Geometrie;
+Priority := 200);
+Wasserbecken OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #befestigt.Wasserbecken (
+Sign := {Becken};
+Geometry := Geometrie;
+Priority := 200);
+UebrigeBefestigte OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #befestigt.uebrige_befestigte (
+Sign := {Befestigt};
+Geometry := Geometrie;
+Priority := 200);
+Acker OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #humusiert.Acker_Wiese_Weide (
+Sign := {Acker};
+Geometry := Geometrie;
+Priority := 200);
+Reben OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #humusiert.Intensivkultur.Reben (
+Sign := {Reben};
+Geometry := Geometrie;
+Priority := 200);
+UebrigeIntensivkultur OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #humusiert.Intensivkultur.uebrige_Intensivkultur (
+Sign := {Intensivkultur};
+Geometry := Geometrie;
+Priority := 200);
+Garten OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #humusiert.Gartenanlage (
+Sign := {Garten};
+Geometry := Geometrie;
+Priority := 200);
+Moor OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #humusiert.Hoch_Flachmoor (
+Sign := {Moor};
+Geometry := Geometrie;
+Priority := 200);
+UebrigeHumusiert OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #humusiert.uebrige_humusierte (
+Sign := {Humusiert};
+Geometry := Geometrie;
+Priority := 200);
+StehendesGewaesser OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #Gewaesser.stehendes (
+Sign := {StehendesWasser};
+Geometry := Geometrie;
+Priority := 200);
+FliessendesGewaisser OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #Gewaesser.fliessendes (
+Sign := {Wasserlauf};
+Geometry := Geometrie;
+Priority := 200);
+Schilfguertel OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #Gewaesser.Schilfguertel (
+Sign := {Schilf};
+Geometry := Geometrie;
+Priority := 200);
+Waldgeschlossen OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #bestockt.geschlossener_Wald (
+Sign := {DichterWald};
+Geometry := Geometrie;
+Priority := 200);
+Weidedicht OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #bestockt.Wyteide.Wytweide_dicht (
+Sign := {Dicht};
+Geometry := Geometrie;
+Priority := 200);
+Weideoffen OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #bestockt.Wytweide.Wytweide_offen (
+Sign := {Offen};
+Geometry := Geometrie;
+Priority := 200);
+bestockt OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #bestockt.uebrige_bestockte (
+Sign := {Uebrigebestockt};
+Geometry := Geometrie;
+Priority := 200);
+Fels OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #vegetationslos.Fels (
+Sign := {Fels};
+Geometry := Geometrie;
+Priority := 200);
+Gletscher OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #vegetationslos.Gletscher_Firn (
+Sign := {Gletscher};
+Geometry := Geometrie;
+Priority := 200);
+GeroellSand OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #vegetationslos.Geroell_Sand (
+Sign := {GeroellSand};
+Geometry := Geometrie;
+Priority :=200 );
+AbbauDeponie OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #vegetationslos.Abbau_Deponie (
+Sign := {Kiesgrube};
+Geometry := Geometrie;
+Priority := 200);
+vegetationslos OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == #vegetationslos.uebrige_vegetationslose (
+Sign := {UebrigeVeglos};
+Geometry := Geometrie;
+Priority := 200);
+END BodenFlaeche;
+!! Objektname nur für Wasserlauf
+GRAPHIC Objektname
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Bodenbedeckung.Objektname =
+Objname OF StandardSymbology.StandardSigns.TextSign:
+WHERE Objektname_von -> Art == #Gewaesser.fliessend(
+Sign := {Objektname};
+Txt := Name;
+Geometry := Pos -> Pos;
+Rotation := Pos -> Ori;
+HAli := Pos -> HAli;
+VAli := Pos -> VAli;
+Priority := 200);
+END Objektname;
+END Bodenbedeckung;
+!! Punkte
+TOPIC Einzelobjekte =
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte;
+VIEW PunktEinzelobjekte
+JOIN OF DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.Einzelobjekt,
+DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.Punktelement,
+DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.PunktelementBez;
+= ATTRIBUTE
+ALL OF Einzelobjekt;
+ALL OF Punktelement;
+END PunktEinzelobjekte;
+GRAPHIC PunktEinzelobjekt
+BASED ON PunktEinzelobjekte =
+Denkmal OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Denkmal(
+Sign := {Monument};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority :=360 );
+MastAntenne OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Mast_Antenne(
+Sign := {Antenne};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Aussichtsturm OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Aussichtsturm(
+Sign := {Aussichtsturm};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Ruine OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Ruine_archaeologisches_Objekt(
+Sign := {Ruine};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Fels OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # einbelner_Fels(
+Sign := {Findling};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Faehre OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Faehre(
+Sign := {Faehre};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Grotte OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Grotte_Hoehleneingang(
+Sign := {Grotte};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Einzelbaum OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # wichtiger_Einzelbaum(
+Sign := {Einzelbaum};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Bildstock OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Bildstock_Kruzifix(
+Sign := {Bildstock};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+Quelle OF StandardSymbology.StandardSigns.SymbolSign:
+WHERE Art == # Quelle(
+Sign := {Quelle};
+Geometry :=Geometrie;
+Scale := 0;
+Rotation :=Ori;
+Priority := 360);
+END PunktEinzelobjekt;
+!! Linien
+VIEW LinienEinzelobjekte
+JOIN OF DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.Einzelobjekt,
+DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.Linienelement,
+DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.LinienelementBez;
+= ATTRIBUTE
+ALL OF Einzelobjekt;
+ALL OF Linienelement;
+END LinienEinzelobjekte;
+GRAPHIC LinienEinzelobjekt
+BASED ON PunktEinzelobjekte =
+Mauer OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Mauer(
+Sign := {Mauer};
+Geometry :=Geometrie;
+Priority := 330);
+Tunnel OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Tunnel_Unterfuehrung_Galerie(
+Sign := {Tunnel};
+Geometry :=Geometrie;
+Priority := 330);
+Uferverbauung OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Uferverbauung(
+Sign := {Uferverbauung};
+Geometry :=Geometrie;
+Priority := 330);
+Landungssteg OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Landungssteg(
+Sign := {Landungssteg};
+Geometry :=Geometrie;
+Priority := 330);
+Rinnsal OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Rinnsal(
+Sign := {Rinnsal};
+Geometry :=Geometrie;
+Priority :=330 );
+schmalerWeg OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # schmaler_Weg(
+Sign := {Schmalerweg};
+Geometry :=Geometrie;
+Priority := 330);
+Hochspannungsleitung OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Hochspannungsleitung(
+Sign := {Hochspannungsltg};
+Geometry :=Geometrie;
+Priority := 330);
+Druckleitung OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Druckleitung(
+Sign := {Druckleitung};
+Geometry :=Geometrie;
+Priority := 330);
+Bahngeleise OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Bahngeleise(
+Sign := {Bahngeleise};
+Geometry :=Geometrie;
+Priority := 330);
+Luftseilbahn OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Luftseilbahn(
+Sign := {Luftseilbahn};
+Geometry :=Geometrie;
+Priority := 330);
+Gondelbahn OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Gondelbahn_Sesselbahn(
+Sign := {Gondelbahn};
+Geometry :=Geometrie;
+Priority :=330 );
+Materialseilbahn OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Materialseilbahn(
+Sign := {Materialseilbahn};
+Geometry :=Geometrie;
+Priority := 330);
+Skilift OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Art == # Skilift(
+Sign := {Skilift};
+Geometry :=Geometrie;
+Priority := 330);
+END LinienEinzelobjekt;
+!!Flächen
+VIEW FlaechenEinzelobjekte
+JOIN OF DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.Einzelobjekt,
+DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.Flaechenelement,
+DM.01-AV-CH_LV03_24d_ili2.Einzelobjekte.FlaechenelementBez;
+= ATTRIBUTE
+ALL OF Einzelobjekt;
+ALL OF Flaechenelement;
+END FlaechenEinzelobjekte;
+GRAPHIC FlaechenEinzelobjekt
+BASED ON FlaechenEinzelobjekte =
+Brunnen OF StandardSymbology.StandardSigns.SurfaceSign:
+WHERE Art == # Brunnen(
+Sign := {Brunnen};
+Geometry :=Geometrie;
+Priority := 300);
+END FlaechenEinzelobjekt;
+END Einzelobjekte;
+TOPIC Nomenklatur=
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Nomenklatur;
+GRAPHIC Flurname
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Nomenklatur.Flurname =
+Flurname OF StandardSymbology.StandardSigns.TextSign:(
+Sign := {Flurname};
+Txt := Name;
+Geometry := Pos -> Pos;
+Rotation := Pos -> Ori;
+HAli := Pos -> HAli;
+VAli := Pos -> VAli;
+Priority := 503);
+END Flurname;
+GRAPHIC Ortsname
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Nomenklatur.Ortsname =
+Ortsname OF StandardSymbology.StandardSigns.TextSign:(
+Sign := {Ortsname};
+Txt := Name;
+Geometry := Pos -> Pos;
+Rotation := Pos -> Ori;
+HAli := Pos -> HAli;
+VAli := Pos -> VAli;
+Priority := 302);
+END Ortsname;
+GRAPHIC Gelaendename
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Nomenklatur.Gelaendename =
+Gelaendename OF StandardSymbology.StandardSigns.TextSign:(
+Sign := {Gelaendname};
+Txt := Name;
+Geometry := Pos -> Pos;
+Rotation := Pos -> Ori;
+HAli := Pos -> HAli;
+VAli := Pos -> VAli;
+Priority := 301);
+END Gelaendename;
+END Nomenklatur;
+TOPIC Liegenschaften =
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Liegenschaften;
+GRAPHIC Liegenschaft
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Liegenschaften.Grundstueck =
+Liegenschaft OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Gueltigkeit == # gueltig
+AND Art == # Liegenschaft (
+Sign := {Liegenschaft};
+Geometry := Liegenschaefte -> Geometrie;
+Priority := 600);
+Baurecht OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Gueltigkeit == # gueltig
+AND Art == # SelbstRecht.Baurecht (
+Sign := {Baurecht};
+Geometry := SelbstRechte -> Geometrie;
+Priority := 600);
+Quellenrecht OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Gueltigkeit == # gueltig
+AND Art == # SelbstRecht.Quellenrecht (
+Sign := {Quellenrecht};
+Geometry := SelbstRechte -> Geometrie;
+Priority := 600);
+Konzessionsrecht OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Gueltigkeit == # gueltig
+AND Art == # SelbstRecht.Konzessionsrecht (
+Sign := {Konzessionsrecht};
+Geometry := SelbstRechte -> Geometrie;
+Priority := 600);
+SelbstRecht OF StandardSymbology.StandardSigns.PolylineSign:
+WHERE Gueltigkeit == # gueltig
+AND Art == # SelbstRecht.weitere (
+Sign := {Selbstrecht};
+Geometry := SelbstRechte -> Geometrie;
+Priority := 600);
+END Liegenschaft;
+GRAPHIC Bergwerk
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Liegenschaften.Bergwerk =
+Liegenschaft OF StandardSymbology.StandardSigns.PolylineSign:(
+Sign := {Bergwerk};
+Geometry := Geometrie;
+Priority := 600);
+END Bergwerk;
+END Liegenschaften;
+TOPIC Gemeindegrenzen =
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Gemeindegrenzen;
+GRAPHIC Gemeindegrenze
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Gemeindegrenzen.Gemeindegrenze =
+Gemeindegrenze OF StandardSymbology.StandardSigns.PolylineSign:(
+Sign := {Gemeindegrenze};
+Geometry := Geometrie;
+Priority := 700);
+END Gemeindegrenze;
+END Gemeindegrenzen;
+TOPIC Kantonsgrenzen=
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Kantonsgrenzen;
+GRAPHIC Kantonsgrenze
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Kantonsgrenzen.Kantonsgrenzabschnitt =
+Kantonsgrenze OF StandardSymbology.StandardSigns.PolylineSign:(
+Sign := {Kantonsgrenze};
+Geometry := Geometrie;
+Priority := 800);
+END Kantonsgrenze;
+END Kantonsgrenzen;
+TOPIC Landesgrenzen=
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Landesgrenzen;
+GRAPHIC Landesgrenze
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Landesgrenzen.Landesgrenzabschnitt =
+Landesgrenze OF StandardSymbology.StandardSigns.PolylineSign:(
+Sign := {Landesgrenze};
+Geometry := Geometrie;
+Priority := 900);
+END Landesgrenze;
+END Landesgrenzen;
+TOPIC Gebaeudeadressen=
+DEPENDS ON DM.01-AV-CH_LV03_24d_ili2.Gebaeudeadressen;
+GRAPHIC Lokalisationsname
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Gebaeudeadressen.LokalisationsName =
+Lokalisationsname OF StandardSymbology.StandardSigns.TextSign:(
+Sign := {Lokalisationsname};
+Txt := Text;
+Geometry := Pos -> Pos;
+Rotation := Pos -> Ori;
+HAli := Pos -> HAli;
+VAli := Pos -> VAli;
+Priority := 401);
+END Lokalisationsname;
+GRAPHIC Hausnummer
+BASED ON DM.01-AV-CH_LV03_24d_ili2.Gebaeudeadressen.GebaeudeEingang =
+Hausnummer OF StandardSymbology.StandardSigns.TextSign:(
+Sign := {Hausnummer};
+Txt := Hausnummer;
+Geometry := Pos -> Pos;
+Rotation := Pos -> Ori;
+HAli := Pos -> HAli;
+VAli := Pos -> VAli;
+Priority := 402);
+END Hausnummer;
+END Gebaeudeadressen;
+END Grafikbeschreibung_av.
