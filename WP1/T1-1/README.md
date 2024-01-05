@@ -42,3 +42,109 @@ These steps allow to select the following models:
 <!-- In addition to these results, we have also identified the following model that could be used in this project:
 
 - [Hazard_Mapping_V1_3.ili](https://models.geo.admin.ch/BAFU/Hazard_Mapping_V1_3.ili) -->
+
+## Geocat
+
+Geocat also allows to retrieve informations about MGDM.
+
+One can for instance filter the records corresponding to `models` via the following [url](https://www.geocat.ch/geonetwork/srv/eng/catalog.search#/search?query_string=%7B%22resourceType%22:%20%7B%22model%22:%20true%7D%7D). However, this does not provide links to related geoservices and representation models.
+
+Another possibility is to send a request to the CSW service:
+
+```
+https://www.geocat.ch/geonetwork/srv/fre/csw?
+service=CSW
+&version=2.0.2
+&request=GetRecords
+&constraintLanguage=CQL_TEXT&constraint=dc:type = 'model'
+&constraint_language_version=1.1.0&typeNames=csw:Record&resultType=results
+&ElementSetName=full&maxRecords=3&lang=fr
+```
+
+but not the all the records correspond to MGDM and the filter on the dct:abstract LIKE 'Modèle de géodonnées minimal%' doesn't seem to work.
+
+By using the id of the records obtained with the GetRecordById operation and the http://www.opengis.net/cat/csw/2.0.2 schema, it is then possible to obtain the extended information linked to the record:
+
+```
+https://www.geocat.ch/geonetwork/srv/fre/csw?
+service=CSW
+&version=2.0.2
+&request=GetRecordById
+&id=f4aabaac-910e-45e9-8262-1f6f72920b99
+&elementSetName=full
+&outputSchema=http://www.opengis.net/cat/csw/2.0.2
+```
+
+However, it is not possible to obtain the URLs of other linked records containing links to geoservices.
+
+A final possibility lies in the Geonetwork API. It is possible to use the following endpoint:
+
+`https://www.geocat.ch/geonetwork/doc/api/index.html#/search/search`
+
+and associate it with one of the following 2 JSON:
+
+```json
+{
+  "_source": {
+    "includes": [
+      "uuid",
+      "resourceTitleObject.langfre",
+      "resourceAbstractObject.langfre"
+    ]
+  },  
+    "from": 0,
+    "size": 26,
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "query_string": {
+              "query": "(any.langfre:(modèle de géodonnées minimal MGDM) OR any.common:(modèle de géodonnées minimal MGDM) OR resourceTitleObject.langfre:(modèle de géodonnées minimal MGDM)^2 OR resourceTitleObject.\\*:\"modèle de géodonnées minimal MGDM\"^6)AND (resourceType:\"service\")",
+              "default_operator": "AND"
+            }
+          }
+        ]
+      }
+    },
+    "track_total_hits": true,
+    "sort":{"_id":"asc"}
+  }
+```
+
+```json
+{
+  "_source": {
+    "includes": [
+      "uuid",
+      "resourceTitleObject.langfre",
+      "resourceAbstractObject.langfre"
+    ]
+  },
+  "from": 0,
+  "size":1,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+            "query": "(uuid:\"fce3b347-cc58-4b29-bb87-a35eed4487ea\")",
+            "default_operator": "AND"
+          }
+        }
+      ]
+    }
+  },
+  "track_total_hits": true,
+  "sort":{"_id":"asc"}
+  }
+```
+
+but this doesn't allow the information to be linked either. 
+
+__NOTE:__ It would probably be possible to obtain the linked information by updating the JSON content with certain parameters of this url, although this is not well understood at the moment:
+
+https://www.geocat.ch/geonetwork/srv/api/search/records/_search?relatedType=children&relatedType=parent&relatedType=brothersAndSisters&relatedType=siblings&relatedType=associated&relatedType=services&relatedType=datasets&relatedType=fcats&relatedType=hasfeaturecats&relatedType=sources&relatedType=hassources&relatedType=related&relatedType=onlines&relatedType=thumbnails
+
+## Conclusion
+
+As will be explained later in the project documentation, in order to define the VIEWs and representation models in INTERLIS 2, it is necessary to cross-reference the information in the data models with the geoservices or associated data sets ("flat models") and the representation models (metadata, EXCEL or WMS GetStyle models), but neither Geocat nor geobasisdaten.ch currently allow this cross-referencing.

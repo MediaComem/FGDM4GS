@@ -46,7 +46,6 @@ The `DescribeFeatureType` operation of the following version of the [WFS service
 | bemerkung_typ      | string                         | 0         | 1         |
 | kanton             | string
 
-
 ### 1. Service WMS (GetFeatureInfo)
 
 The `GetFeatureInfo` operation of the following WMS [service](https://geodienste.ch/db/planungszonen_v1_0_0/fra?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&CRS=EPSG:3857&BBOX=742465.67788010137155652,5902893.5199219873175025,751489.7654410689137876,5913919.95374835748225451&WIDTH=667&HEIGHT=815&LAYERS=planungszone&FORMAT=image/png&QUERY_LAYERS=planungszone&INFO_FORMAT=application/vnd.ogc.gml&I=500&J=267&FEATURE_COUNT=1) allows to obtain the following attribute aliases (however, without the datatypes) in French:
@@ -217,4 +216,6 @@ Also ensure that the `DispositionLevel` attribute of the `.ili` file  correspond
 
 Finally, the definitions of the `WFS` and `WMS` services are not uniform and this is where this project can help to improve the situation.
 
-__NOTE__: check that is the purpose of the `Symbole : BLACKBOX BINARY;` in the `.ili` file.
+__NOTE 1__: check that is the purpose of the `Symbole : BLACKBOX BINARY;` in the `.ili` file.
+ 
+__NOTE 2__: The TOPIC associated with the metadata should be integrated into a separate model.
