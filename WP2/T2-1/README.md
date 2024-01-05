@@ -8,3 +8,5 @@ This resuts in the following resources:
 - SectoralPlanForRoadInfrastructure_V1_4
 - Axis_V1_1
 - Zones_reservees_V1_1
+
+_NOTE:_ a STRUCTURE cannot be instantiated (i.e. considered as an object) but can be integrated into a class in advance. A DOMAIN can be integrated into the TOPIC to which it relates but if it is associated with several classes of different TOPICS it must remain independent.
