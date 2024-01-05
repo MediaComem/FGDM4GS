@@ -1,0 +1,12 @@
+INTERLIS 2.3;
+
+!! Version | Date       | Who     | Modification
+!!-------------------------------------------------------------------------------------------
+!! 1.O     | 2024-01-04 | HEIG-VD | - Création du modèle
+
+MODEL Axis_V1_1_gm
+AT "mailto:maxime.collombin@heig-vd.ch"
+  VERSION "2024-01-04" =
+  IMPORTS Axis_V1_1;
+  IMPORTS StandardSymbology;
+END Axis_V1_1_gm.

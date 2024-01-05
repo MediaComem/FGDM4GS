@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File Planungszonen_V1_1_Symbols.xtf 2023-01-03 -->
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+  xmlns:geom="http://www.interlis.ch/geometry/1.0"
+  xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ili:headersection>
+    <ili:models>
+      <ili:model>StandardSymbology</ili:model>
+      <!-- See how to specify the model without getting an error message (modeldir command not working) -->
+      <!-- <ili:model>Planungszonen_V1_1_gm</ili:model> -->
+    </ili:models>
+    <ili:sender>HEIG-VD</ili:sender>
+    <ili:comment>Planungszonen_V1_1 Symbology</ili:comment>
+  </ili:headersection>
+  <ili:datasection>
+    <!-- Define the TOPIC and the basket id -->
+    <!-- understand why validation fails with a different reference value for the basket id -->
+    <StandardSigns ili:bid="REFHANDB00000002">
+        <!-- Define the LCh color values with transparency-->
+        <!-- See https://lch.oklch.com/ for conversion -->
+        <!-- Note: Propose a modification to the StandardSymbology model to include other Color Spaces -->
+        <Color ili:tid="1">
+            <Name>C-Violet_moyen</Name>
+            <L>81.69</L>
+            <C>34.96</C>
+            <H>308.4</H>
+            <T>0.6</T>
+        </Color>
+        <Color ili:tid="2">
+            <Name>C-Violet clair</Name>
+            <L>88.57</L>
+            <C>21.09</C>
+            <H>306.48</H>
+            <T>0.6</T>
+        </Color>
+        <Color ili:tid="3">
+            <Name>C-Pourpre</Name>
+            <L>94.86</L>
+            <C>8.59</C>
+            <H>297.89</H>
+            <T>0.6</T>
+        </Color>
+        <Color ili:tid="4">
+            <Name>C-Violet foncé</Name>
+            <L>73.7</L>
+            <C>37.41</C>
+            <H>301.72</H>
+            <T>1</T>
+        </Color>
+        <!-- Define the polyline attributes -->
+        <PolylineAttrs ili:tid="4001">
+            <Width>2</Width>
+            <Join>round</Join>
+            <Caps>round</Caps>
+        </PolylineAttrs>
+        <!-- Define the surface signs -->
+        <!-- The reference to style ids in the "Layers" tab of the Excel file seems to be missing. -->
+        <!-- Better understand the implicit tid numbering convention -->
+        <!-- Note: Check how to reference a PolylineAttrs id as a Border (cf Baertschi p. 81)-->
+        <SurfaceSign ili:tid="5001">
+            <ili:Name>Kanton</ili:Name>
+            <FillColor ili:ref="1"></FillColor>
+            <!-- Check how to reference the Border attribute which is defined in the SurfaceSignBorderAssoc association of the StandardSymbology model  -->
+            <!-- <Border ili:ref="4001"></Border> -->
+        </SurfaceSign>
+        <SurfaceSign ili:tid="5002">
+            <ili:Name>Gemeinde</ili:Name>
+            <FillColor ili:ref="2"></FillColor>
+        </SurfaceSign>
+        <SurfaceSign ili:tid="5003">
+            <ili:Name>andere</ili:Name>
+            <FillColor ili:ref="3"></FillColor>
+        </SurfaceSign>
+        <FontSymbol_Polyline>
+            <Color ili:ref="3"></Color>
+            <LineAttrs ili:ref="4001"></LineAttrs>
+            <!-- Understand how to describe the geometry of the symbol (the values here have been arbitrary chosen) -->
+            <!-- Why do we need to have this geometry attribute? -->
+            <Geometry>
+                <geom:polyline>
+                    <geom:coord>
+                        <geom:C1>0</geom:C1>
+                        <geom:C2>0</geom:C2>
+                    </geom:coord>
+                    <geom:coord>
+                        <geom:C1>0</geom:C1>
+                        <geom:C2>10</geom:C2>
+                    </geom:coord>
+                </geom:polyline>
+            </Geometry>
+        </FontSymbol_Polyline>
+    </StandardSigns>
+  </ili:datasection>
+</ili:transfer>

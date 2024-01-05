@@ -1,0 +1,28 @@
+INTERLIS 2.4;
+MODEL myModel
+AT "http://toto.com"
+VERSION "2023-11-29" =
+    TOPIC Test =
+        CLASS Person = 
+            Firstname : TEXT;
+            Lastname : TEXT;
+        END Person;
+        CLASS City = 
+            PostalCode : MANDATORY 0 .. 9999;
+            CityName : TEXT;
+        END City;
+        ASSOCIATION CityPerson =
+            hostPerson -- {0..*} Person;
+            liveinCity -<> {1} City;
+            !! a town is inhabited by 0 to n people
+            !! 1 person lives in a town
+        END CityPerson;
+        VIEW myView
+          PROJECTION OF City;
+          WHERE City->PostalCode > 1000;
+            =
+          ALL OF City;
+        END myView;
+        
+    END Test;
+END myModel.

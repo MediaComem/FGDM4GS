@@ -1,0 +1,32 @@
+INTERLIS 2.3;
+MODEL IVS_V2_1_d
+AT "mailto:maxime.collombin@heig-vd.ch"
+VERSION "2023-12-04" = 
+    IMPORTS IVS_V2_1;
+    TOPIC IVS_Ik_d EXTENDS IVS_V2_1.IVS_Inventarkarte =
+        VIEW view_ivs
+            JOIN OF IVS_V2_1.IVS_Inventarkarte.ivs_linienobjekte_base, IVS_V2_1.IVS_Inventarkarte.ivs_linienobjekte_lv95, IVS_V2_1.IVS_Inventarkarte.ivs_objekte, IVS_V2_1.IVS_Inventarkarte.ivs_signatur_linie, IVS_V2_1.IVS_Inventarkarte.ivs_kantone, IVS_V2_1.IVS_Inventarkarte.ivs_streckenbeschriebe, IVS_V2_1.IVS_Inventarkarte.ivs_slanamen;
+            WHERE
+                ivs_slanamen->Role_ivs_objekte == ivs_linienobjekte_base
+                AND
+                ivs_objekte->Role_ivs_kantone == ivs_kantone
+                AND
+                ivs_streckenbeschriebe->Role_ivs_objekte == ivs_objekte
+                AND
+                ivs_linienobjekte_base->Role_ivs_signatur_linie == ivs_signatur_linie
+                AND
+                ivs_linienobjekte_base->Role_ivs_objekte == ivs_objekte;
+                =
+            ATTRIBUTE
+                wkb_geometry := ivs_linienobjekte_lv95 -> ivs_geometrie;
+                ivs_nummer := ivs_objekte -> ivs_nummer;
+                ivs_signatur_label := ivs_signatur_linie -> ivs_deutsch;
+                ivs_kanton := ivs_kantone -> ivs_kanton;
+                ivs_sladatehist := ivs_streckenbeschriebe -> ivs_sladatehist;
+                ivs_sladatemorph := ivs_streckenbeschriebe -> ivs_sladatemorph;
+                ivs_slabedeutung := ivs_objekte -> ivs_slabedeutung;
+                ivs_sortsla := ivs_objekte -> ivs_sortsla;
+                ivs_slaname := ivs_slanamen -> ivs_slaname;
+        END view_ivs;
+    END IVS_Ik_d;
+END IVS_V2_1_d.

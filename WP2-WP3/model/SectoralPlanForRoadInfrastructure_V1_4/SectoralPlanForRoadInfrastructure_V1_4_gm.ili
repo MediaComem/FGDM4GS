@@ -1,0 +1,12 @@
+INTERLIS 2.3;
+
+!! Version | Date       | Who     | Modification
+!!-------------------------------------------------------------------------------------------
+!! 1.O     | 2024-01-04 | HEIG-VD | - Création du modèle
+
+MODEL SectoralPlanForRoadInfrastructure_V1_4_gm
+AT "mailto:maxime.collombin@heig-vd.ch"
+  VERSION "2024-01-04" =
+  IMPORTS SectoralPlanForRoadInfrastructure_V1_4_d;
+  IMPORTS StandardSymbology;
+END SectoralPlanForRoadInfrastructure_V1_4_gm.
