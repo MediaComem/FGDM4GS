@@ -9,6 +9,8 @@
       <ili:model>StandardSymbology</ili:model>
       <!-- See how to specify the model without getting an error message (modeldir command not working) -->
       <!-- <ili:model>Planungszonen_V1_1_gm</ili:model> -->
+      <!-- <ili:model>Planungszonen_V1_1_gm</ili:model> -->
+      <!-- <MODEL NAME="Planungszonen_V1_1_gm" VERSION="2023-12-22" URI="mailto:maxime@localhost"/> -->
     </ili:models>
     <ili:sender>HEIG-VD</ili:sender>
     <ili:comment>Planungszonen_V1_1 Symbology</ili:comment>

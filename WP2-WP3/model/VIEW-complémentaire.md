@@ -6,53 +6,103 @@ Les exemples se retrouvent dans les VIEW définies à partir des 4 modèles choi
 
 ## UNION OF
 
-Un exemple se trouve dans le modèle [SIA405_Eaux_3D_2015_2_f-20211020.ili](https://405.sia.ch/models/2015/SIA405_Eaux_3D_2015_2_f-20211020.ili) aux lignes 196 à 222.
+Un exemple se trouve dans le modèle [view_AcceptBasicUnionDef.ili](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasicUnionDef.ili).
 
 ```interlis
-VIEW Point_de_conduite
-  UNION OF base1~SIA405_EAUX_3D_2015.SIA405_Eaux_3D.Organe_de_fermeture,
-         base2~SIA405_EAUX_3D_2015.SIA405_Eaux_3D.Hydrant,
-         base3~SIA405_EAUX_3D_2015.SIA405_Eaux_3D.Composant;
-      =
-  ATTRIBUTE
-    OBJ_ID := base1 -> OBJ_ID;
-    METAATTRIBUTS := base1-> METAATTRIBUTS;
-    Genre : (  !! Affectation de l'attribut du genre possible uniquement via une fonction
-          inconnu,
-          organe_de_fermeture,
-          borne_hydrant,
-          hydrant_souterrain,
-          bouche_arrosage,
-          coude,  !! coude au lieu de Composant, si Composant.genre = piece_moulee.coude.horizontal our piece_moulee.coude.vertical (nouveau 17.11.2014)
-          autre
-    );
-    SymboleOri :=base1-> SymboleOri;
-    Determination_planimetrique :=base1-> Determination_planimetrique;
-    Altitude :=base1-> Altitude;
-    Determination_altimetrique :=base1-> Determination_altimetrique;
-    Proprietaire :=base1-> Proprietaire;
-    Altitude_capuchon := base1-> Altitude_capuchon;
-    Epaisseur := base1-> Epaisseur;
-    Cote_entree := base2->Cote_entree;  !! Extension 3D Hydrant
-    Cote_sortie := base3->Cote_sortie;  !! Extension 3D Composant Courant
-END Point_de_conduite;
+INTERLIS 2.3;
+
+MODEL Test  AT "http://www.interlis.ch/ili2c/tests/" VERSION "1"=
+
+  TOPIC Base = 
+
+    CLASS C1 =
+      Attr1: TEXT*10;
+    END C1;
+
+    CLASS C2 =
+      Attr2: TEXT*30;
+    END C2;
+
+  END Base;
+
+  TOPIC Union =
+
+    DEPENDS ON Test.Base;
+
+    VIEW CC 
+      UNION OF C1 ~ Test.Base.C1,C2 ~ Test.Base.C2;
+	=
+      ATTRIBUTE
+        Attr1 : TEXT*30 := C1->Attr1,C2->Attr2;
+    END CC;
+
+  END Union;
+
+END Test.
 ```
 
 ## AGGREGATION OF
 
+Un exemple se trouve dans le modèle [view_AcceptBasicAggregationDef.ili](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasicAggregationDef.ili).
+
+```interlis
+INTERLIS 2.3;
+
+CONTRACTED MODEL Test  AT "http://www.interlis.ch/ili2c/tests/" VERSION "1"=
+
+  TOPIC Base = 
+
+    CLASS B =
+      Attr1: TEXT*20;
+    END B;
+
+  END Base;
+
+  FUNCTION countB(elements : BAG OF Test.Base.B):NUMERIC;
+
+  TOPIC Aggregation =
+
+    DEPENDS ON Test.Base;
+
+    VIEW VB2 
+      AGGREGATION OF Test.Base.B  EQUAL(B->Attr1);
+	=
+      ATTRIBUTE
+        ElementCount : 0 .. 10000 := countB(AGGREGATES);
+    END VB2;
+
+  END Aggregation;
+
+END Test.
+```
 
 ## INSPECTION OF
 
-cf modèle [LWB_Nutzungsflaechen_V2_0.ili](https://models.geo.admin.ch/BLW/LWB_Nutzungsflaechen_V2_0.ili) l.167-175:
+Un exemple se trouve dans le modèle [view_AcceptBasenameOfUnrenamedInspectionDef.ili](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasenameOfUnrenamedInspectionDef.ili)
 
 ```interlis
-VIEW InspectionOfProgramm
-  INSPECTION OF LNF_Nutzung_Programm ~ LWB_Nutzungsflaechen_V2_0.Nutzung.LNF_Nutzung -> Programm; =
-ATTRIBUTE
-  ALL OF LNF_Nutzung_Programm;
-  Bezugsjahr := PARENT->Bezugsjahr->Bezugsjahr;
-    MANDATORY CONSTRAINT
-        (NOT (DEFINED (LNF_Nutzung_Programm->Reference->Gueltig_Von)) OR LNF_Nutzung_Programm->Reference->Gueltig_Von <= Bezugsjahr)
-        AND (NOT (DEFINED (LNF_Nutzung_Programm->Reference->Gueltig_Bis)) OR LNF_Nutzung_Programm->Reference->Gueltig_Bis >= Bezugsjahr);
-END InspectionOfProgramm;
+INTERLIS 2.3;
+
+MODEL Test AT "http://www.interlis.ch/ili2c/tests/" VERSION "1" =
+
+  TOPIC Base = 
+
+    STRUCTURE A =
+      Attr1: TEXT*20;
+    END A;
+
+    CLASS B =
+      Attr2: BAG OF A;
+    END B;
+
+    VIEW VB 
+      INSPECTION OF Test.Base.B->Attr2;
+	=
+      ATTRIBUTE
+      Attr1: TEXT*20 := B->Attr1;
+    END VB;
+
+  END Base;
+
+END Test.
 ```
