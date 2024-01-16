@@ -19,7 +19,7 @@
     <RoadsExtended ili:bid="REFHANDB00000001">
 
       <!-- === LandCover === -->
-      <roads:LandCover ili:tid="16">
+      <roads:clear ili:tid="16">
         <roads:Type>water</roads:Type>
         <roads:Geometry>
           <geom:surface>
@@ -86,7 +86,7 @@
             </geom:exterior>
           </geom:surface>
         </roads:Geometry>
-      </roads:LandCover>
+      </roads:clear>
 
       <roads:LandCover ili:tid="18">
         <roads:Type>building</roads:Type>
