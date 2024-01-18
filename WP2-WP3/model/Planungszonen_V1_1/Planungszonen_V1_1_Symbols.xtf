@@ -3,22 +3,20 @@
 <ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
   xmlns:geom="http://www.interlis.ch/geometry/1.0"
   xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:Planungszonen_V1_1_gm="http://www.interlis.ch/xtf/2.4/Planungszonen_V1_1_gm">
   <ili:headersection>
     <ili:models>
       <ili:model>StandardSymbology</ili:model>
       <!-- See how to specify the model without getting an error message (modeldir command not working) -->
       <!-- <ili:model>Planungszonen_V1_1_gm</ili:model> -->
-      <!-- <ili:model>Planungszonen_V1_1_gm</ili:model> -->
-      <!-- <MODEL NAME="Planungszonen_V1_1_gm" VERSION="2023-12-22" URI="mailto:maxime@localhost"/> -->
     </ili:models>
     <ili:sender>HEIG-VD</ili:sender>
     <ili:comment>Planungszonen_V1_1 Symbology</ili:comment>
   </ili:headersection>
   <ili:datasection>
-    <!-- Define the TOPIC and the basket id -->
-    <!-- understand why validation fails with a different reference value for the basket id -->
-    <StandardSigns ili:bid="REFHANDB00000002">
+    <!-- Define the StandardSigns -->
+    <StandardSigns ili:bid="Symb01">
         <!-- Define the LCh color values with transparency-->
         <!-- See https://lch.oklch.com/ for conversion -->
         <!-- Note: Propose a modification to the StandardSymbology model to include other Color Spaces -->
@@ -59,7 +57,6 @@
         <!-- Define the surface signs -->
         <!-- The reference to style ids in the "Layers" tab of the Excel file seems to be missing. -->
         <!-- Better understand the implicit tid numbering convention -->
-        <!-- Note: Check how to reference a PolylineAttrs id as a Border (cf Baertschi p. 81)-->
         <SurfaceSign ili:tid="5001">
             <ili:Name>Kanton</ili:Name>
             <FillColor ili:ref="1"></FillColor>
