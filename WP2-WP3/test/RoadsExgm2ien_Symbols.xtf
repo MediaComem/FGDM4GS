@@ -9,7 +9,6 @@
   <ili:headersection>
     <ili:models>
       <ili:model>StandardSymbology</ili:model>
-      <ili:model>RoadsExgm2ien</ili:model>
     </ili:models>
     <ili:sender>KOGIS</ili:sender>
 
@@ -60,13 +59,13 @@
         <T>1.0</T>
       </Color>
 
-      <c ili:tid="6">
+      <Color ili:tid="6">
         <Name>black</Name>
         <L>0.0</L>
         <C>0.0</C>
         <H>0.0</H>
         <T>1.0</T>
-      </c>
+      </Color>
 
       <Color ili:tid="7">
         <Name>white</Name>

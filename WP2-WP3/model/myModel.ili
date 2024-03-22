@@ -14,8 +14,8 @@ VERSION "2023-11-29" =
         ASSOCIATION CityPerson =
             hostPerson -- {0..*} Person;
             liveinCity -<> {1} City;
-            !! a town is inhabited by 0 to n people
-            !! 1 person lives in a town
+            !! a city is inhabited by 0 to n people
+            !! 1 person lives in one city
         END CityPerson;
         VIEW myView
           PROJECTION OF City;
@@ -23,6 +23,5 @@ VERSION "2023-11-29" =
             =
           ALL OF City;
         END myView;
-        
     END Test;
 END myModel.

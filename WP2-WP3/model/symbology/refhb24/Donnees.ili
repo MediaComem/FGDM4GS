@@ -1,0 +1,24 @@
+INTERLIS 2.4;
+MODEL Donnees (fr) AT "http://www.interlis.ch/"
+    VERSION "2005-06-16" =
+    DOMAIN
+        CoordP = COORD
+            0.000 .. 200.000 [INTERLIS.m],
+            0.000 .. 200.000 [INTERLIS.m],
+            ROTATION 2 -> 1;
+    TOPIC Points =
+        DOMAIN
+            Genre_point = (Borne
+                (grande,
+                petite),
+                Cheville,
+                Tuyau,
+                Croix,
+                non_materialise) ORDERED;
+        CLASS Point =
+            Planimetrie: CoordP; !! CoordP est un domaine de valeurs de coordonnees
+            Genre: Genre_point;
+            Nom_point: TEXT*12;
+        END Point;
+    END Points;
+END Donnees.

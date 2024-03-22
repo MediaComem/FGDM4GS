@@ -25,7 +25,7 @@ INTERLIS 2.3;
 MODEL <model_name>
 AT "<url>"
 VERSION "<YYYY-MM-DD>" = 
-END <model_name>;
+END <model_name>.
 ```
 
 ### ili2c basic control
@@ -57,7 +57,7 @@ __NOTE:__
 
 ### Basic ilivalidator command
 
-`java -jar .\ilivalidator\ilivalidator.jar [options] <nom_du_fichier.xtf>`
+`java -jar .\ilivalidator\ilivalidator.jar --models <model_name> <nom_du_fichier.xtf>`
 
 ### Initial comments on the creation of VIEWS
 

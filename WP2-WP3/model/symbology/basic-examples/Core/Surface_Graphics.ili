@@ -1,0 +1,49 @@
+INTERLIS 2.4;
+MODEL Polygon (en) AT "http://www."
+    VERSION "2024_01_12" =
+    IMPORTS GeometryCHLV95_V2;
+    TOPIC Polygon =
+        CLASS Polygon =
+            Geometry : SURFACE WITH (ARCS,STRAIGHTS) VERTEX GeometryCHLV95_V2.Coord2 WITHOUT OVERLAPS>0.05;
+            Name : TEXT*80;
+            Remark : TEXT*80;
+        END Polygon;
+    END Polygon;
+END Polygon.
+MODEL Surface_Graphics (en) AT "http://www."
+    VERSION "2024-01-25" =
+    IMPORTS Polygon;
+    IMPORTS StandardSymbology;
+    SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+      OBJECTS OF PolylineSign: continuous;
+        TOPIC Graphics =
+            DEPENDS ON Polygon.Polygon;
+            GRAPHIC Surface_Graphics
+                BASED ON Polygon.Polygon.Polygon =
+                Symbol OF StandardSymbology.StandardSigns.SurfaceSign: (
+                    Priority := 1
+                );
+            END Surface_Graphics;
+            !! Création de 2 vues  successives permettant de
+            !! décomposer la surface afin d'en obtenir l'outline
+            VIEW Surface_Boundary
+                INSPECTION OF Polygon.Polygon.Polygon -> Geometry;
+                =
+            ATTRIBUTE
+                ALL OF Polygon;
+            END Surface_Boundary;
+            VIEW Surface_Boundary2
+                INSPECTION OF Base ~ Surface_Boundary -> Lines;
+                =
+            ATTRIBUTE
+                Geometry := Base -> Geometry;
+            END Surface_Boundary2;
+            GRAPHIC SurfaceBoundary_Graphics
+                BASED ON Surface_Boundary2 =
+                Boundary OF StandardSymbology.StandardSigns.PolylineSign: (
+                 Sign := {continuous};
+                 Geometry := Geometry;
+                 Priority := 1);
+            END SurfaceBoundary_Graphics;
+        END Graphics;
+END Surface_Graphics.

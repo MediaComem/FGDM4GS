@@ -24,6 +24,6 @@ MODEL RoadsExdm2ien (en) AT "http://www.interlis.ch/models/refhb24"
           other));
     END RoadSign;
 
-  END RoadsExtended; !! of TOPIC
+  END RoadsExtended;
 
-END RoadsExdm2ien. !! of MODEL
+END RoadsExdm2ien.

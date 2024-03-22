@@ -1,0 +1,15 @@
+INTERLIS 2.4;
+MODEL Simple_Graphique (fr) AT "http://www.interlis.ch/"
+    VERSION "2005-06-16" =
+    IMPORTS Donnees;
+    IMPORTS SimpleSignsSymbology;
+    SIGN BASKET SimpleSignsSymbology ~ SimpleSignsSymbology.SignsTopic;
+    TOPIC Point_graphique = 
+        DEPENDS ON Donnees.Points;
+        GRAPHIC Simple_Point_Graphique
+            BASED ON Donnees.Points.Point =
+            Symbol OF SimpleSignsSymbology.SignsTopic.Symbol:( 
+                Pos := Planimetrie);
+        END Simple_Point_Graphique;
+    END Point_graphique;
+END Simple_Graphique.

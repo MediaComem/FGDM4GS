@@ -1,0 +1,19 @@
+@startuml
+[Modèles de données (*.ili)] as DataModel
+[Données de transfert (*.ili)] as DataTransfer
+[Modèle Standard de Symbologie (*.ili)] as StandardSymbologyModel
+[Signatures graphiques (*.xtf)] as GraphicSignatures
+[Modèle graphique (*.ili)] as GraphicModel
+[Feuille de style (*.sld,*.json)] as StyleSheet
+[Rendu cartographique] as MapRendering
+'Associations
+DataModel -up-> GraphicModel
+StandardSymbologyModel -down-> GraphicModel
+StandardSymbologyModel -right-> GraphicSignatures 
+GraphicModel -up-> GraphicSignatures
+GraphicSignatures -down-> StyleSheet
+GraphicModel -right-> StyleSheet
+StyleSheet -right-> MapRendering
+DataModel -down-> DataTransfer
+DataTransfer -right-> MapRendering
+@enduml
