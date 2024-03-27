@@ -8,10 +8,10 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <ili:headersection>
       <ili:models>
-         <ili:model>Surface_Graphics</ili:model>
+         <ili:model>Polyline_Graphics</ili:model>
       </ili:models>
       <ili:sender>HEIG-VD</ili:sender>
-      <ili:comment>Basic example of Surface_Graphics Signatures</ili:comment>
+      <ili:comment>Basic example of Polyline_Graphics Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
       <StandardSigns ili:bid="REFHANDB00000002">
@@ -42,11 +42,6 @@
             <Color ili:ref="2"></Color>
             <LineAttrs ili:ref="4001"></LineAttrs>
          </LineStyle_Solid>
-         <!-- Surface Signs -->
-         <SurfaceSign ili:tid="5001">
-            <ili:Name>fill</ili:Name>
-            <FillColor ili:ref="1"></FillColor>
-         </SurfaceSign>
          <!-- Polyline Signs -->
          <PolylineSign ili:tid="3001">
             <ili:Name>continuous</ili:Name>

@@ -1,0 +1,39 @@
+INTERLIS 2.4;
+MODEL Point (en) AT "http://www." VERSION "2024_01_12" =
+    IMPORTS GeometryCHLV95_V2;
+
+    UNIT
+     Angle_Degree = 180 / PI [INTERLIS.rad];
+
+    DOMAIN
+     Orientation = 0.0 .. 359.9 CIRCULAR [Angle_Degree];
+    TOPIC Point =
+        CLASS Point =
+            Geometry : GeometryCHLV95_V2.Coord2;
+            Name : TEXT*80;
+            Ori: Orientation;
+            Remark : TEXT*80;
+        END Point;
+    END Point;
+END Point.
+MODEL Text_Graphics (en) AT "http://www." VERSION "2024-01-25" =
+    IMPORTS Point;
+    IMPORTS StandardSymbology;
+
+    SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+        OBJECTS OF TextSign: Linefont_18;
+
+        TOPIC Graphics =
+            DEPENDS ON Point.Point;
+            GRAPHIC Text_Graphics
+                BASED ON Point.Point.Point =
+                Symbol OF StandardSymbology.StandardSigns.TextSign: (
+                    Sign := {Linefont_18};
+                    Txt := Name;
+                    Geometry := Geometry; !! Note: a Textsymbolizer can be applied to any type of geometry
+                    Rotation := Ori;  
+                    Priority := 1
+                );
+            END Text_Graphics;            
+        END Graphics;
+END Text_Graphics.

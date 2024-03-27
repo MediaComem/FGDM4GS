@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File Text_Graphics_Signatures.xtf 2024-03-22 -->
+
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+  xmlns:geom="http://www.interlis.ch/geometry/1.0"
+  xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>Text_Graphics</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Basic example of Text_Graphics Signatures</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <StandardSigns ili:bid="REFHANDB00000002">
+         <!-- Color Library -->
+         <Color ili:tid="1">
+            <Name>white</Name>
+            <L>100.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <Color ili:tid="2">
+            <Name>black</Name>
+            <L>0.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <!-- External Text Font "Leroy" -->
+         <Font ili:tid="11">
+            <Name>Leroy</Name>
+            <Internal>false</Internal>
+            <Type>text</Type>
+            <BottomBase>0.3</BottomBase>
+         </Font>
+         <!-- Text Sign -->
+         <TextSign ili:tid="1001">
+            <ili:Name>Linefont_18</ili:Name>
+            <Height>1.8</Height>
+            <Font ili:ref="11"></Font>
+            <Color ili:ref="2"></Color>
+         </TextSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>

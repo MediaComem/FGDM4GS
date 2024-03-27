@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.3">
-   <HEADERSECTION SENDER="ili2gpkg" VERSION="2.3">
-      <MODELS>
-         <MODEL NAME="LineSymbolizer" VERSION="2024-01-25" URI="http://www."/>
-      </MODELS>
-   </HEADERSECTION>
-   <DATASECTION/>
-</TRANSFER>

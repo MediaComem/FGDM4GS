@@ -1,25 +1,25 @@
-INTERLIS 2.3;
+INTERLIS 2.4;
 MODEL Polyline (en) AT "http://www." VERSION "2024_01_12" =
-    IMPORTS GeometryCHLV95_V1;
+    IMPORTS GeometryCHLV95_V2;
     TOPIC Polyline =
         CLASS Polyline =
-            Geometry : GeometryCHLV95_V1.Coord2;
+            Geometry : GeometryCHLV95_V2.Coord2;
             Name : TEXT*80;
             Remark : TEXT*80;
         END Polyline;
     END Polyline;
 END Polyline.
-MODEL LineSymbolizer (en) AT "http://www." VERSION "2024-01-25" =
+MODEL Polyline_Graphics (en) AT "http://www." VERSION "2024-01-25" =
     IMPORTS Polyline;
     IMPORTS StandardSymbology;
-        TOPIC LineSymbolizer =
+        TOPIC Graphics =
             DEPENDS ON Polyline.Polyline;
-            GRAPHIC LineSymbolizer
+            GRAPHIC Polyline_Graphics
                 BASED ON Polyline.Polyline.Polyline =
                 Symbol OF StandardSymbology.StandardSigns.PolylineSign: (
-                    Priority := 1;
-                    Width := 1
+                    Geometry := Geometry;
+                    Priority := 1
                 );
-            END LineSymbolizer;            
-        END LineSymbolizer;
-END LineSymbolizer.
+            END Polyline_Graphics;
+        END Graphics;
+END Polyline_Graphics.

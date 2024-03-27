@@ -1,26 +1,25 @@
-INTERLIS 2.3;
+INTERLIS 2.4;
 MODEL Point (en) AT "http://www." VERSION "2024_01_12" =
-    IMPORTS GeometryCHLV95_V1;
+    IMPORTS GeometryCHLV95_V2;
     TOPIC Point =
         CLASS Point =
-            Geometry : GeometryCHLV95_V1.Coord2;
+            Geometry : GeometryCHLV95_V2.Coord2;
             Name : TEXT*80;
             Remark : TEXT*80;
         END Point;
     END Point;
 END Point.
-MODEL PointSymbolizer (en) AT "http://www." VERSION "2024-01-25" =
+MODEL Point_Graphics (en) AT "http://www." VERSION "2024-01-25" =
     IMPORTS Point;
     IMPORTS StandardSymbology;
-        TOPIC PointSymbolizer =
+        TOPIC Graphics =
             DEPENDS ON Point.Point;
-            GRAPHIC PointSymbolizer
+            GRAPHIC Point_Graphics
                 BASED ON Point.Point.Point =
                 Symbol OF StandardSymbology.StandardSigns.SymbolSign: (
-                    Scale := 1;
-                    Rotation := 0;    
+                    Geometry := Geometry;    
                     Priority := 1
                 );
-            END PointSymbolizer;            
-        END PointSymbolizer;
-END PointSymbolizer.
+            END Point_Graphics;            
+        END Graphics;
+END Point_Graphics.
