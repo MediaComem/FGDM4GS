@@ -569,15 +569,12 @@ Note: INTERLIS définit un modèle graphique (`.ili`) et une signature graphique
 ----
 ### INTERLIS vs. SLD/SE & SymCore
 
-- Modèle Graphique
-    - `<Rule><Filter>` (SLD/SE)
-    - Selector (SymCore)
-- Signature Graphique
-    - `FeatureTypeStyle` (SLD/SE)
-    - ~~Coveragestyle~~ (SLD/SE)
-    - Symbolizer (SymCore)
+| INTERLIS | SLD/SE  | SymCore |
+| -------- | ------- | ------- |
+| Modèle Graphique | `<Rule><Filter>` | Selector |
+| Signature Graphique | `FeatureTypeStyle` | `Symbolizer` |
 
-Note: Dans le contexte d'INTERLIS, la signature graphique (`.xtf`) est composée de 0 à n symboles de type ligne (`PolylineSign`), point (`SymbolSign`), surface (`SurfaceSign`) ou texte (`TextSign`).  Dans le contexte d'OGC SLD/SE Un `FeatureTypeStyle` est composé d'une ou de plusieures règles (`Rule`) elles-mêmes composés de 0 à n filtres (`Filter`) et de 0 à n symboliseurs (`Symbolizer`). Les symboliseurs peuvent être de type Ligne (`LineSymbolizer`), Point (`PointSymbolizer`), Polygon (`PolygonSymbolizer`) ou Texte (`TextSymbolizer`). Le représentation graphique INTERLIS diffère en ce sens de SLD/SE en ce sens que les symboles sont définis dans la signature graphique (`.xtf`). Le modèle graphique (*.ili) est à associer à une règle  (`<Rule>`) et son filtre (`<Filter>`) dans SLD/SE ou à un sélecteur (Selector) dans SymCore. La signature graphique (`.xtf`) peut être déclinée en plusieurs `FontSymbol` à savoir `PolylineSign`, ``SymbolSign`, `SurfaceSign` et `TextSign` correspondant respectivement à `LineSymbolizer`, `PointSymbolizer`, `PolygonSymbolizer` et `TextSymbolizer` dans SLD/SE. La représentation Raster n'étant pour l'heure pas prise en charge par INTERLIS, nous nous intéressons en 1er lieu au `FeatureTypeStyle`.
+Note: Dans le contexte d'INTERLIS, la signature graphique (`.xtf`) est composée de 0 à n symboles de type ligne (`PolylineSign`), point (`SymbolSign`), surface (`SurfaceSign`) ou texte (`TextSign`).  Dans le contexte d'OGC SLD/SE Un `FeatureTypeStyle` est composé d'une ou de plusieures règles (`Rule`) elles-mêmes composés de 0 à n filtres (`Filter`) et de 0 à n symboliseurs (`Symbolizer`). Les symboliseurs peuvent être de type Ligne (`LineSymbolizer`), Point (`PointSymbolizer`), Polygon (`PolygonSymbolizer`) ou Texte (`TextSymbolizer`). Le représentation graphique INTERLIS diffère en ce sens de SLD/SE en ce sens que les symboles sont définis dans la signature graphique (`.xtf`). Le modèle graphique (*.ili) est à associer à une règle  (`<Rule>`) et son filtre (`<Filter>`) dans SLD/SE ou à un sélecteur (Selector) dans SymCore. La signature graphique (`.xtf`) peut être déclinée en plusieurs `FontSymbol` à savoir `PolylineSign`, `SymbolSign`, `SurfaceSign` et `TextSign` correspondant respectivement à `LineSymbolizer`, `PointSymbolizer`, `PolygonSymbolizer` et `TextSymbolizer` dans SLD/SE. La représentation Raster n'étant pour l'heure pas prise en charge par INTERLIS, nous nous intéressons en 1er lieu au `FeatureTypeStyle`.
 
 ----
 ### FontSymbol
@@ -600,26 +597,385 @@ END FontSymbol;
 Note: Dans le modèle StandardSymbology, les symboles peuvent être définis soit relativement à une Font (glyphe), soit en décrivant leur géométrie dans la Signature graphique (fichier *.xtf). Le recours a un graphique externe (ExternalGraphic) n'est, en revanche, pas possible. Afin de pouvoir utiliser les Fonts [Cadastra](https://www.cadastre.ch/fr/manual-av/service/cadastral-map.html), il est nécessaire de convertir les codes des symboles unicode pouvant être visualisés avec [FontDrop](https://fontdrop.info/) en base 10. Cela peut être réalisé avec des outils en ligne tels que [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
 
 ----
+### PolyligneSign
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File Surface_Graphics_Signatures.xtf 2024-03-22 -->
+
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+  xmlns:geom="http://www.interlis.ch/geometry/1.0"
+  xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>Polyline_Graphics</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Basic example of Polyline_Graphics Signatures</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <StandardSigns ili:bid="REFHANDB00000002">
+         <!-- Color Library -->
+         <Color ili:tid="1">
+            <Name>white</Name>
+            <L>100.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <Color ili:tid="2">
+            <Name>black</Name>
+            <L>0.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <!-- Internal Symbol Font "Symbols" -->
+         <!-- This Font is only required if a LineStyle_Pattern is defined -->
+         <Font ili:tid="10">
+            <Name>Symbols</Name>
+            <Internal>true</Internal>
+            <Type>symbol</Type>
+         </Font>
+         <!-- Internal FontSymbols -->
+         <!-- This FontSymbol is only required if a LineStyle_Pattern is defined -->
+         <!-- It is also possible to define a Pattern_Symbol with an external Font -->
+         <!-- Star -->
+         <!-- Note that this symbol could be made more complex -->
+         <FontSymbol ili:tid="104">
+         <Name>Star</Name>
+         <Geometry>
+            <FontSymbol_Surface>
+               <Geometry>
+               <geom:surface>
+                  <geom:exterior>
+                     <geom:polyline>
+                     <geom:coord>
+                        <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>-1.0</geom:c1><geom:c2>-1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>0.0</geom:c1><geom:c2>-4.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>1.0</geom:c1><geom:c2>-1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>4.0</geom:c1><geom:c2>0.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>1.0</geom:c1><geom:c2>1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>0.0</geom:c1><geom:c2>4.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>-1.0</geom:c1><geom:c2>1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                     </geom:coord>
+                     </geom:polyline>
+                  </geom:exterior>
+               </geom:surface>
+               </Geometry>
+            </FontSymbol_Surface>
+         </Geometry>
+         <Geometry>
+            <FontSymbol_Polyline>
+               <Color ili:ref="2"></Color>
+               <Geometry>
+               <geom:polyline>
+                  <geom:coord>
+                     <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                     <geom:c1>4.0</geom:c1><geom:c2>0.0</geom:c2>
+                  </geom:coord>
+               </geom:polyline>
+               </Geometry>
+            </FontSymbol_Polyline>
+            <FontSymbol_Polyline>
+               <Color ili:ref="2"></Color>
+               <Geometry>
+               <geom:polyline>
+                  <geom:coord>
+                     <geom:c1>0.0</geom:c1><geom:c2>-4.0</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                     <geom:c1>0.0</geom:c1><geom:c2>4.0</geom:c2>
+                  </geom:coord>
+               </geom:polyline>
+               </Geometry>
+            </FontSymbol_Polyline>
+         </Geometry>
+         <Font ili:ref="10"></Font>
+         </FontSymbol>
+         <!-- Polyline attributes -->
+         <PolylineAttrs ili:tid="4001">
+           <Width>0.01</Width>
+           <!-- Join type -->
+           <!-- Other possible values are: round, bevel -->
+           <Join>miter</Join>
+           <!-- Note: MiterLimit is only avalaible for miter join type -->
+           <MiterLimit>10.0</MiterLimit>
+            <!-- Cap type -->
+            <!-- Other possible value: round -->
+           <Caps>butt</Caps>
+         </PolylineAttrs>
+         <!-- Line Styles -->
+         <!-- Continuous -->
+         <LineStyle_Solid ili:tid="21">
+            <Name>LineSolid_01</Name>
+            <Color ili:ref="2"></Color>
+            <LineAttrs ili:ref="4001"></LineAttrs>
+         </LineStyle_Solid>
+         <!-- Dashed -->
+         <LineStyle_Dashed ili:tid="22">
+            <Name>LineDashed_01</Name>
+            <Dashes>
+              <DashRec>
+                <DLength>0.1</DLength>
+              </DashRec>
+            </Dashes>
+            <Dashes>
+              <DashRec>
+                <DLength>0.1</DLength>
+              </DashRec>
+            </Dashes>
+            <Color ili:ref="2"></Color>
+          </LineStyle_Dashed>
+          <!-- Pattern Line Style -->
+          <LineStyle_Pattern ili:tid="23">
+            <Name>LinePattern_01</Name>
+            <PLength>1</PLength>
+            <Symbols>
+               <Pattern_Symbol>
+                  <!-- FontSymbRef, Dist & Offset are mandatory -->
+                  <FontSymbRef ili:ref="104"></FontSymbRef>
+                  <ColorRef ili:ref="2"></ColorRef>
+                  <!-- Width for symbol lines -->
+                  <Weight>1</Weight>
+                  <Scale>1</Scale>
+                  <!-- Distance along polyline -->
+                  <Dist>0</Dist>
+                  <!-- Vertical distance to polyline axis -->
+                  <Offset>0</Offset>
+               </Pattern_Symbol>
+            </Symbols>
+         </LineStyle_Pattern>
+         <!-- Polyline Signs -->
+         <PolylineSign ili:tid="3001">
+            <ili:Name>continuous</ili:Name>
+            <Style ili:ref="21">
+              <PolylineSignLineStyleAssoc>
+                <Offset>0.0</Offset>
+              </PolylineSignLineStyleAssoc>
+            </Style>
+         </PolylineSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>
+```
+
+Note: La classe `PolylineSign` permet de définir des styles de lignes. Dans l'exemple ci-dessus, un style de ligne continue (`LineStyle_Solid`), un style de ligne en pointillé (`LineStyle_Dashed`) et un style de ligne en pointillé avec un motif (`LineStyle_Pattern`) sont définis. Le motif (`Pattern_Symbol`) est défini par des références à un symbole (`FontSymbol`), à une couleur (`ColorRef`), de même que par les attributs Weight, Scale, Dist et Offset. `Weight` correspond à l'épaisseur de la ligne, `Scale` à l'échelle du symbole, `Dist` à la distance le long de la polyligne et `Offset` à la distance verticale par rapport à l'axe de la polyligne.
+
+----
 ### PolylineSign
 
-- LineSymbolizer
+- SLD/SE
+  - LineSymbolizer
+- SymCore
+  - [Basic Vector Features Styling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23)
+  - [Requirements Classes for Advanced strokes](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc38)
+
+Note: La classe `PolylineSign` correspond à un `LineSymbolizer` dans SLD/SE et aux classes d'exigences [8. Requirements Class “Basic Vector Features Styling”](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23) et [13.  Requirements Classes for Advanced strokes](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc38) dans SymCore.
 
 ----
 ### SymbolSign
 
-- PointSymbolizer
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 
-Note: Pour définir des implantations ponctuelles, INTERLIS définit la classe `SymbolSign` qui correspond à un `PointSymbolizer` dans SLD/SE et aux classes d'exigences [8. Requirements Class “Basic Vector Features Styling”](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23) et [11.  Requirements Classes for Shapes](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc32) dans SymCore.
+<!-- File Point_Graphics_Signatures.xtf 2024-03-22 -->
+
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+  xmlns:geom="http://www.interlis.ch/geometry/1.0"
+  xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>Point_Graphics</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Basic example of Point_Graphics Signatures</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <StandardSigns ili:bid="REFHANDB00000002">
+         <!-- Color Library -->
+         <Color ili:tid="1">
+            <Name>white</Name>
+            <L>100.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <Color ili:tid="2">
+            <Name>black</Name>
+            <L>0.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <!-- External Symbol Font "Symbols" -->
+         <!-- The Font "CadastraSymbol-Regular"
+         can be downloaded from the following link:
+         https://www.cadastre.ch/fr/manual-av/service/cadastral-map.html -->
+         <!-- It may also be necessary to convert unicodes from base 16 to base 10.
+         The following resource may be useful for achieving this:
+         https://www.rapidtables.com/convert/number/hex-to-decimal.html -->
+         <Font ili:tid="301">
+            <Name>CadastraSymbol-Regular</Name>
+            <Internal>false</Internal>
+            <Type>text</Type>
+         </Font>
+         <Font ili:tid="302">
+            <Name>CadastraSymbol-Mask</Name>
+            <Internal>false</Internal>
+            <Type>text</Type>
+         </Font>
+         <!-- FontSymbol Library-->
+         <!-- External symbols -->
+         <!-- Tree -->
+         <FontSymbol ili:tid="201">
+            <Name>Tree</Name>            
+            <UCS4>0077</UCS4>
+            <Font ili:ref="301"></Font>
+         </FontSymbol>
+         <!-- Tree Clip -->
+         <FontSymbol ili:tid="202">
+            <Name>TreeClip</Name>            
+            <UCS4>111</UCS4>
+            <Font ili:ref="302"></Font>
+         </FontSymbol>
+         <!-- Symbol Signs -->
+         <SymbolSign ili:tid="2001">
+            <ili:Name>Symbol</ili:Name>
+            <Scale>1.0</Scale>
+            <!-- Rotation is optional -->
+            <Rotation>0</Rotation>
+            <Color ili:ref="2"></Color>
+            <Symbol ili:ref="201"></Symbol>
+            <!-- ClipSymbol should only be used if a mask is needed -->
+            <ClipSymbol ili:ref="202"></ClipSymbol>
+         </SymbolSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>
+```
+
+Note: Pour définir des implantations ponctuelles, INTERLIS définit la classe `SymbolSign` qui comporte les attributs `Name`, `Scale`, `Rotation`, `Color`, `Symbol` et `ClipSymbol`  ainsi que les attributs `Geometry` et `Priority` (obligatoire) dans le modèle graphique. Le symbole est décrit dans la classe `FontSymbol` comme nous l'avons vu plus haut. Le paramètre `ClipSymbol` permet de définir un masque pour le symbole. Pour ce qui est des autres attributs, ils ont déjà été définis dans les autre signatures graphiques (`Sign`).
+
+----
+### SymbolSign
+
+- SLD/SE
+  - PointSymbolizer
+- SymCore
+  - [Basic Vector Features Styling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23)
+  - [Requirements Classes for Shapes](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc32)
+
+Note: La classe `SymbolSign` correspond à un `PointSymbolizer` dans SLD/SE et aux classes d'exigences [8. Requirements Class “Basic Vector Features Styling”](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23) et [11.  Requirements Classes for Shapes](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc32) dans SymCore.
 
 ----
 ### SurfaceSign
 
-- PolygonSymbolizer
+- SLD/SE
+  - PolygonSymbolizer
+- SymCore
+  - [Basic Vector Features Styling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23)
+  - [Requirements Classes for Advanced fills](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc43)
+
+Note: La classe `SurfaceSign` correspond à un `PolygonSymbolizer` dans SLD/SE et aux classes d'exigences [8. Requirements Class “Basic Vector Features Styling”](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23) et [14. Requirements Classes for Advanced fills](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc43) dans SymCore.
 
 ----
 ### TextSign
 
-- TextSymbolizer
+- `Spacing` (FontSymbol)?
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File Text_Graphics_Signatures.xtf 2024-03-22 -->
+
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+  xmlns:geom="http://www.interlis.ch/geometry/1.0"
+  xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>Text_Graphics</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Basic example of Text_Graphics Signatures</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <StandardSigns ili:bid="REFHANDB00000002">
+         <!-- Color Library -->
+         <Color ili:tid="1">
+            <Name>white</Name>
+            <L>100.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <Color ili:tid="2">
+            <Name>black</Name>
+            <L>0.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <!-- External Text Font "Leroy" -->
+         <Font ili:tid="11">
+            <Name>Leroy</Name>
+            <Internal>false</Internal>
+            <Type>text</Type>
+            <BottomBase>0.3</BottomBase>
+         </Font>
+         <!-- Text Sign -->
+         <TextSign ili:tid="1001">
+            <ili:Name>Linefont_18</ili:Name>
+            <Height>1.8</Height>
+            <Weight>0.18</Weight>
+            <Slanted>false</Slanted>
+            <Underlined>false</Underlined>
+            <Striked>false</Striked>
+            <ClipBox>0.0</ClipBox>
+            <Font ili:ref="11"></Font>
+            <Color ili:ref="2"></Color>
+         </TextSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>
+```
+
+Note: Pour définir des implantations de type texte, INTERLIS définit la classe `TextSign` qui comporte les attributs `Name`, `Height`, `Weight`, `Slanted`, `Underlined`, `Striked`, `ClipBox`, `Font` et `Color` ainsi que les attributs `Geometry`, `Rotation` et `Priority` (obligatoire) dans le modèle graphique. Les paramètres `Height`, `Weight`, `Slanted`, `Underlined` et `Striked` permettent de définir la taille, le poids, l'inclinaison, le soulignement et le barré du texte. Le paramètre `ClipBox` permet de définir une boîte de délimitation pour le texte. Pour ce qui est des autres attributs, ils ont déjà été définis dans les autre signatures graphiques (`Sign`). Le recours à l'attribut `Spacing` défini dans la classe `FontSymbol` ne semble pas possible alors qu'il semble dédié avec des symboles de type texte tel que défini dans le modèle StandardSymbology (cf remarque "!! only for text symbols (characters)"). Une association manque-t-elle dans le modèle entre TextSign et FontSymbol?
+
+----
+### TextSign
+
+- SLD/SE
+  - TextSymbolizer
+- SymCore
+  - [Requirements Classes for Labeling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc29)
+
+Note: La classe `TextSign` correspond à un `TextSymbolizer` dans SLD/SE et à la classe d'exigences [10. Requirements Classes for Labeling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc29) dans SymCore.
+
 
 ---
 ### Perspectives
