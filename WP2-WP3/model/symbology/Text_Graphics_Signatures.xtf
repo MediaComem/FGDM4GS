@@ -41,6 +41,11 @@
          <TextSign ili:tid="1001">
             <ili:Name>Linefont_18</ili:Name>
             <Height>1.8</Height>
+            <Weight>0.18</Weight>
+            <Slanted>false</Slanted>
+            <Underlined>false</Underlined>
+            <Striked>false</Striked>
+            <ClipBox>0.0</ClipBox>
             <Font ili:ref="11"></Font>
             <Color ili:ref="2"></Color>
          </TextSign>

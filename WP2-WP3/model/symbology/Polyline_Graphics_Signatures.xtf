@@ -30,18 +30,142 @@
             <H>0.0</H>
             <T>1.0</T>
          </Color>
+         <!-- Internal Symbol Font "Symbols" -->
+         <!-- This Font is only required if a LineStyle_Pattern is defined -->
+         <Font ili:tid="10">
+            <Name>Symbols</Name>
+            <Internal>true</Internal>
+            <Type>symbol</Type>
+         </Font>
+         <!-- Internal FontSymbols -->
+         <!-- This FontSymbol is only required if a LineStyle_Pattern is defined -->
+         <!-- It is also possible to define a Pattern_Symbol with an external Font -->
+         <!-- Star -->
+         <!-- Note that this symbol could be made more complex -->
+         <FontSymbol ili:tid="104">
+         <Name>Star</Name>
+         <Geometry>
+            <FontSymbol_Surface>
+               <Geometry>
+               <geom:surface>
+                  <geom:exterior>
+                     <geom:polyline>
+                     <geom:coord>
+                        <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>-1.0</geom:c1><geom:c2>-1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>0.0</geom:c1><geom:c2>-4.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>1.0</geom:c1><geom:c2>-1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>4.0</geom:c1><geom:c2>0.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>1.0</geom:c1><geom:c2>1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>0.0</geom:c1><geom:c2>4.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>-1.0</geom:c1><geom:c2>1.0</geom:c2>
+                     </geom:coord>
+                     <geom:coord>
+                        <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                     </geom:coord>
+                     </geom:polyline>
+                  </geom:exterior>
+               </geom:surface>
+               </Geometry>
+            </FontSymbol_Surface>
+         </Geometry>
+         <Geometry>
+            <FontSymbol_Polyline>
+               <Color ili:ref="2"></Color>
+               <Geometry>
+               <geom:polyline>
+                  <geom:coord>
+                     <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                     <geom:c1>4.0</geom:c1><geom:c2>0.0</geom:c2>
+                  </geom:coord>
+               </geom:polyline>
+               </Geometry>
+            </FontSymbol_Polyline>
+            <FontSymbol_Polyline>
+               <Color ili:ref="2"></Color>
+               <Geometry>
+               <geom:polyline>
+                  <geom:coord>
+                     <geom:c1>0.0</geom:c1><geom:c2>-4.0</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                     <geom:c1>0.0</geom:c1><geom:c2>4.0</geom:c2>
+                  </geom:coord>
+               </geom:polyline>
+               </Geometry>
+            </FontSymbol_Polyline>
+         </Geometry>
+         <Font ili:ref="10"></Font>
+         </FontSymbol>
          <!-- Polyline attributes -->
          <PolylineAttrs ili:tid="4001">
            <Width>0.01</Width>
-           <Join>round</Join>
+           <!-- Join type -->
+           <!-- Other possible values are: round, bevel -->
+           <Join>miter</Join>
+           <!-- Note: MiterLimit is only avalaible for miter join type -->
+           <MiterLimit>10.0</MiterLimit>
+            <!-- Cap type -->
+            <!-- Other possible value: round -->
            <Caps>butt</Caps>
          </PolylineAttrs>
          <!-- Line Styles -->
+         <!-- Continuous -->
          <LineStyle_Solid ili:tid="21">
             <Name>LineSolid_01</Name>
             <Color ili:ref="2"></Color>
             <LineAttrs ili:ref="4001"></LineAttrs>
          </LineStyle_Solid>
+         <!-- Dashed -->
+         <LineStyle_Dashed ili:tid="22">
+            <Name>LineDashed_01</Name>
+            <Dashes>
+              <DashRec>
+                <DLength>0.1</DLength>
+              </DashRec>
+            </Dashes>
+            <Dashes>
+              <DashRec>
+                <DLength>0.1</DLength>
+              </DashRec>
+            </Dashes>
+            <Color ili:ref="2"></Color>
+          </LineStyle_Dashed>
+          <!-- Pattern Line Style -->
+          <LineStyle_Pattern ili:tid="23">
+            <Name>LinePattern_01</Name>
+            <PLength>1</PLength>
+            <Symbols>
+               <Pattern_Symbol>
+                  <!-- FontSymbRef, Dist & Offset are mandatory -->
+                  <FontSymbRef ili:ref="104"></FontSymbRef>
+                  <ColorRef ili:ref="2"></ColorRef>
+                  <!-- Width for symbol lines -->
+                  <Weight>1</Weight>
+                  <Scale>1</Scale>
+                  <!-- Distance along polyline -->
+                  <Dist>0</Dist>
+                  <!-- Vertical distance to polyline axis -->
+                  <Offset>0</Offset>
+               </Pattern_Symbol>
+            </Symbols>
+         </LineStyle_Pattern>
          <!-- Polyline Signs -->
          <PolylineSign ili:tid="3001">
             <ili:Name>continuous</ili:Name>
