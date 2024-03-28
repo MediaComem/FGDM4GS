@@ -567,36 +567,63 @@ Note: Aucune `VIEWS` n'a pu être trouvée dans les MGDM. Nous recommandoans la 
 Note: INTERLIS définit un modèle graphique (`.ili`) et une signature graphique (`.xtf`). La signature graphique (`.ili`) est liée au modèle graphique (`.xtf`) lui même lié au Modèle de données. L'association du modèle graphique, des signatures graphiques et des données permettent le rendu cartographique. Le standard OGC SLD/SE définit deux types de styles cartographiques: `FeatureTypeStyle` et `CoverageStyle`. Le `FeatureTypeStyle` est utilisé pour définir le style d'une couche vecteur tandis que le `CoverageStyle` est utilisé pour définir le style d'une couche raster. La représenation Raster n'étant pour l'heure pas prise en charge par INTERLIS, nous nous intéressons en 1er lieu au `FeatureTypeStyle`. L'association d'un `FeatureTypeStyle` à des données permet le rendu cartographique.
 
 ----
-### INTERLIS vs. SLD/SE
+### INTERLIS vs. SLD/SE & SymCore
 
-- Modèle Graphique ~ Style + Rule (Filter)
-- Signature Graphique ~ Symbolizer
+- Modèle Graphique
+    - `<Rule><Filter>` (SLD/SE)
+    - Selector (SymCore)
+- Signature Graphique
+    - `FeatureTypeStyle` (SLD/SE)
+    - ~~Coveragestyle~~ (SLD/SE)
+    - Symbolizer (SymCore)
 
-<p align="center">
-  <img src="assets/INTERLIS-SLD_SE.png" width=500 />
-</p>
-
-Note: Dans le contexte d'INTERLIS, la signature graphique (`.xtf`) est composée de 0 à n symboles de type ligne (`PolylineSign`), point (`SymbolSign`), surface (`SurfaceSign`) ou texte (`TextSign`).  Dans le contexte d'OGC SLD/SE Un `FeatureTypeStyle` est composé d'une ou de plusieures règles (`Rule`) elles-mêmes composés de 0 à n filtres (`Filter`) et de 0 à n symboliseurs (`Symbolizer`). Les symboliseurs peuvent être de type Ligne (`LineSymbolizer`), Point (`PointSymbolizer`), Polygon (`PolygonSymbolizer`) ou Texte (`TextSymbolizer`).
-
-----
-### INTERLIS vs. SLD/SE
-#### PolylineSign/LineSymbolizer
+Note: Dans le contexte d'INTERLIS, la signature graphique (`.xtf`) est composée de 0 à n symboles de type ligne (`PolylineSign`), point (`SymbolSign`), surface (`SurfaceSign`) ou texte (`TextSign`).  Dans le contexte d'OGC SLD/SE Un `FeatureTypeStyle` est composé d'une ou de plusieures règles (`Rule`) elles-mêmes composés de 0 à n filtres (`Filter`) et de 0 à n symboliseurs (`Symbolizer`). Les symboliseurs peuvent être de type Ligne (`LineSymbolizer`), Point (`PointSymbolizer`), Polygon (`PolygonSymbolizer`) ou Texte (`TextSymbolizer`). Le représentation graphique INTERLIS diffère en ce sens de SLD/SE en ce sens que les symboles sont définis dans la signature graphique (`.xtf`). Le modèle graphique (*.ili) est à associer à une règle  (`<Rule>`) et son filtre (`<Filter>`) dans SLD/SE ou à un sélecteur (Selector) dans SymCore. La signature graphique (`.xtf`) peut être déclinée en plusieurs `FontSymbol` à savoir `PolylineSign`, ``SymbolSign`, `SurfaceSign` et `TextSign` correspondant respectivement à `LineSymbolizer`, `PointSymbolizer`, `PolygonSymbolizer` et `TextSymbolizer` dans SLD/SE. La représentation Raster n'étant pour l'heure pas prise en charge par INTERLIS, nous nous intéressons en 1er lieu au `FeatureTypeStyle`.
 
 ----
-### INTERLIS vs. SLD/SE
-#### SymbolSign/PointSymbolizer
+### FontSymbol
+
+- Glyphe (UCS4) & Geometry
+- ~~ExternalGraphic~~
+
+```interlis
+CLASS FontSymbol =
+  !! All font symbols are defined for size 1.0 and scale 1.0.
+  !! The value is measured in user units (i.e. normally [m]).
+  Name        : TEXT*40; !! Symbol name, if known
+  UCS4        : 0 .. 4000000000; !! only for text symbols (characters)
+  Spacing     : SS_Float; !! only for text symbols (characters)
+  Geometry    : LIST OF FontSymbol_Geometry
+                RESTRICTION (FontSymbol_Polyline; FontSymbol_Surface);
+END FontSymbol;
+```
+
+Note: Dans le modèle StandardSymbology, les symboles peuvent être définis soit relativement à une Font (glyphe), soit en décrivant leur géométrie dans la Signature graphique (fichier *.xtf). Le recours a un graphique externe (ExternalGraphic) n'est, en revanche, pas possible. Afin de pouvoir utiliser les Fonts [Cadastra](https://www.cadastre.ch/fr/manual-av/service/cadastral-map.html), il est nécessaire de convertir les codes des symboles unicode pouvant être visualisés avec [FontDrop](https://fontdrop.info/) en base 10. Cela peut être réalisé avec des outils en ligne tels que [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
 
 ----
-### INTERLIS vs. SLD/SE
-#### SurfaceSign/PolygonSymbolizer
+### PolylineSign
+
+- LineSymbolizer
 
 ----
-### INTERLIS vs. SLD/SE
-#### TextSign/TextSymbolizer
+### SymbolSign
+
+- PointSymbolizer
+
+Note: Pour définir des implantations ponctuelles, INTERLIS définit la classe `SymbolSign` qui correspond à un `PointSymbolizer` dans SLD/SE et aux classes d'exigences [8. Requirements Class “Basic Vector Features Styling”](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23) et [11.  Requirements Classes for Shapes](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc32) dans SymCore.
+
+----
+### SurfaceSign
+
+- PolygonSymbolizer
+
+----
+### TextSign
+
+- TextSymbolizer
 
 ---
 ### Perspectives
-#### (Dénormalistion)
+#### Dénormalistion
 
 - Automatisation de la création de `VIEWS`
 - Pipeline de publication
@@ -607,7 +634,7 @@ Note: Dans le cas de modèles existants pour lesquels des géoservices ont pu ê
 
 ----
 ### Perspectives
-#### (Modèle de représentation)
+#### Modèle de représentation
 
 - Mapping INTERLIS, OGC SLD/SE & SymCore
 - Style Editor (p.ex. [GeoStyler](https://geostyler.org/) ou ~ [pySLD](https://github.com/iamtekson/pySLD))
@@ -619,7 +646,7 @@ Note: Pour favoriser l'interopéralité entre INTERLIS et les autres langages de
 
 ---
 ### Recommendations
-#### (Dénormalisation)
+#### Dénormalisation
 
 - Création de modèles dérivés
 - `PROJECTION OF` <Association>
@@ -630,7 +657,16 @@ Note: Nous recommandons la création de modèles dérivés pour la définition d
 
 ----
 ### Recommendations
-#### (Dénormalisation)
+#### StandardSymbology
+
+- AbstractSymbology
+- ExternalGraphic
+
+Note: Le modèle AbstractSymbology pourrait potentiellement être intégré dans le modèle StandardSymbology selon M. Baertschi (à éprouver). Le modèle StandardSymbology pourrait également être étendu pour prendre en charge les graphiques externes (ExternalGraphic).
+
+----
+### Recommendations
+#### Dénormalisation
 
 - Modifier le code source de [ili2db](https://github.com/claeis/ili2db) pour la prise en charge des `VIEWS`
 - [Python Bindings für INTERLIS](https://interlis.discourse.group/t/python-bindings-fuer-interlis/203)
@@ -640,7 +676,7 @@ Note: Il serait intéressant de modifier le code source de ili2db pour la prise 
 
 ----
 ### Recommendations
-#### (Inventaires des MGDM)
+#### Inventaires des MGDM
 
 - Intégrer des liens entre les différentes ressources (geobasisdaten.ch, geocat.ch, WMS, WFS etc.)
 - Màj geobasisdaten.ch liens geocat.ch [type='model'](https://www.geocat.ch/geonetwork/srv/fre/csw?service=CSW&version=2.0.2&request=GetRecords&resultType=results&constraintLanguage=CQL_TEXT&constraint=dc:type='model'&constraint_language_version=1.1.0&typeNames=csw:Record)
@@ -650,7 +686,7 @@ Note: Il serait intéressant d'intégrer des liens entre les différentes ressou
 
 ----
 ### Recommendations
-#### (Mise en réseau des ressources)
+#### Mise en réseau des ressources
 
 ![INDG Geocat](assets/INDG-Geocat.svg)
 
@@ -661,7 +697,7 @@ Note: Il serait intéressant de mettre en réseau les ressources INDG (geobasisd
 
 ----
 ### Recommendations
-#### (Collection(s) de Styles)
+#### Collection(s) de Styles
 
 ![INDG Styles](assets/INDG-Styles.png)
 
