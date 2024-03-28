@@ -30,34 +30,47 @@
             <H>0.0</H>
             <T>1.0</T>
          </Color>
-         <Color ili:tid="6">
-            <Name>black</Name>
-            <L>0.0</L>
-            <C>0.0</C>
-            <H>0.0</H>
-            <T>1.0</T>
-          </Color>
-         <!-- Internal Symbol Font "Symbols" -->
+         <!-- External Symbol Font "Symbols" -->
          <!-- The Font "CadastraSymbol-Regular"
          can be downloaded from the following link:
          https://www.cadastre.ch/fr/manual-av/service/cadastral-map.html -->
+         <!-- It may also be necessary to convert unicodes from base 16 to base 10.
+         The following resource may be useful for achieving this:
+         https://www.rapidtables.com/convert/number/hex-to-decimal.html -->
          <Font ili:tid="301">
             <Name>CadastraSymbol-Regular</Name>
             <Internal>false</Internal>
             <Type>text</Type>
-          </Font>
-          <!-- Font/Symbol Library-->
-          <FontSymbol ili:tid="201">
+         </Font>
+         <Font ili:tid="302">
+            <Name>CadastraSymbol-Mask</Name>
+            <Internal>false</Internal>
+            <Type>text</Type>
+         </Font>
+         <!-- FontSymbol Library-->
+         <!-- External symbols -->
+         <!-- Tree -->
+         <FontSymbol ili:tid="201">
             <Name>Tree</Name>            
             <UCS4>0077</UCS4>
             <Font ili:ref="301"></Font>
+         </FontSymbol>
+         <!-- Tree Clip -->
+         <FontSymbol ili:tid="202">
+            <Name>TreeClip</Name>            
+            <UCS4>111</UCS4>
+            <Font ili:ref="302"></Font>
          </FontSymbol>
          <!-- Symbol Signs -->
          <SymbolSign ili:tid="2001">
             <ili:Name>Symbol</ili:Name>
             <Scale>1.0</Scale>
+            <!-- Rotation is optional -->
+            <Rotation>0</Rotation>
             <Color ili:ref="2"></Color>
             <Symbol ili:ref="201"></Symbol>
+            <!-- ClipSymbol should only be used if a mask is needed -->
+            <ClipSymbol ili:ref="202"></ClipSymbol>
          </SymbolSign>
       </StandardSigns>
    </ili:datasection>

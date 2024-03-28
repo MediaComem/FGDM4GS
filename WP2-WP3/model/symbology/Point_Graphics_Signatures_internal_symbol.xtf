@@ -11,7 +11,7 @@
          <ili:model>Point_Graphics</ili:model>
       </ili:models>
       <ili:sender>HEIG-VD</ili:sender>
-      <ili:comment>Basic example of Point_Graphics Signatures</ili:comment>
+      <ili:comment>Point_Graphics Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
       <StandardSigns ili:bid="REFHANDB00000002">
@@ -44,7 +44,87 @@
             <Type>symbol</Type>
           </Font>
          <!-- Font/Symbol Library -->
+         <!-- Square -->
          <FontSymbol ili:tid="101">
+          <Name>Square</Name>
+          <Geometry>
+            <FontSymbol_Surface>
+              <Geometry>
+                <geom:surface>
+                  <geom:exterior>
+                    <geom:polyline>
+                      <geom:coord>
+                        <geom:c1>-0.5</geom:c1><geom:c2>-0.5</geom:c2>
+                      </geom:coord>
+                      <geom:coord>
+                        <geom:c1>0.5</geom:c1><geom:c2>-0.5</geom:c2>
+                      </geom:coord>
+                      <geom:coord>
+                        <geom:c1>0.5</geom:c1><geom:c2>0.5</geom:c2>
+                      </geom:coord>
+                      <geom:coord>
+                        <geom:c1>-0.5</geom:c1><geom:c2>0.5</geom:c2>
+                      </geom:coord>
+                      <geom:coord>
+                        <geom:c1>-0.5</geom:c1><geom:c2>-0.5</geom:c2>
+                      </geom:coord>
+                    </geom:polyline>
+                  </geom:exterior>
+                </geom:surface>
+              </Geometry>
+            </FontSymbol_Surface>
+          </Geometry>
+          <Geometry>
+            <FontSymbol_Polyline>
+              <Color ili:ref="2"></Color>
+              <Geometry>
+                <geom:polyline>
+                  <geom:coord>
+                    <geom:c1>-0.5</geom:c1><geom:c2>-0.5</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                    <geom:c1>0.5</geom:c1><geom:c2>-0.5</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                    <geom:c1>0.5</geom:c1><geom:c2>0.5</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                    <geom:c1>-0.5</geom:c1><geom:c2>0.5</geom:c2>
+                  </geom:coord>
+                  <geom:coord>
+                    <geom:c1>-0.5</geom:c1><geom:c2>-0.5</geom:c2>
+                  </geom:coord>
+                </geom:polyline>
+              </Geometry>
+            </FontSymbol_Polyline>
+          </Geometry>
+          <Font ili:ref="10"></Font>
+         </FontSymbol>
+         <!-- Circle -->
+         <FontSymbol ili:tid="102">
+          <Name>Circle</Name>
+          <!-- No FontSymbol_Surface is defined here, as it is not necessary for a circle
+          and would also mean defining a large number of coordinates. -->
+          <Geometry>
+            <FontSymbol_Polyline>
+              <Color ili:ref="2"></Color>
+              <Geometry>
+                <geom:polyline>
+                  <geom:coord>
+                    <geom:c1>0.0</geom:c1><geom:c2>0.5</geom:c2>
+                  </geom:coord>
+                  <geom:arc>
+                    <geom:c1>0.0</geom:c1><geom:c2>0.0</geom:c2>
+                    <geom:a1>0.0</geom:a1><geom:a2>6.283185307179586</geom:a2><geom:r>0.5</geom:r>
+                  </geom:arc>
+                </geom:polyline>
+              </Geometry>
+            </FontSymbol_Polyline>
+          </Geometry>
+          <Font ili:ref="10"></Font>
+          </FontSymbol>
+         <!-- Triangle -->
+         <FontSymbol ili:tid="103">
             <Name>Triangle</Name>
             <Geometry>
               <FontSymbol_Surface>
@@ -92,12 +172,121 @@
             </Geometry>
             <Font ili:ref="10"></Font>
           </FontSymbol>
+          <!-- Star -->
+          <!-- Note that this symbol could be made more complex -->
+          <FontSymbol ili:tid="104">
+            <Name>Star</Name>
+            <Geometry>
+              <FontSymbol_Surface>
+                <Geometry>
+                  <geom:surface>
+                    <geom:exterior>
+                      <geom:polyline>
+                        <geom:coord>
+                          <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>-1.0</geom:c1><geom:c2>-1.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>0.0</geom:c1><geom:c2>-4.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>1.0</geom:c1><geom:c2>-1.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>4.0</geom:c1><geom:c2>0.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>1.0</geom:c1><geom:c2>1.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>0.0</geom:c1><geom:c2>4.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>-1.0</geom:c1><geom:c2>1.0</geom:c2>
+                        </geom:coord>
+                        <geom:coord>
+                          <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                        </geom:coord>
+                      </geom:polyline>
+                    </geom:exterior>
+                  </geom:surface>
+                </Geometry>
+              </FontSymbol_Surface>
+            </Geometry>
+            <Geometry>
+              <FontSymbol_Polyline>
+                <Color ili:ref="2"></Color>
+                <Geometry>
+                  <geom:polyline>
+                    <geom:coord>
+                      <geom:c1>-4.0</geom:c1><geom:c2>0.0</geom:c2>
+                    </geom:coord>
+                    <geom:coord>
+                      <geom:c1>4.0</geom:c1><geom:c2>0.0</geom:c2>
+                    </geom:coord>
+                  </geom:polyline>
+                </Geometry>
+              </FontSymbol_Polyline>
+              <FontSymbol_Polyline>
+                <Color ili:ref="2"></Color>
+                <Geometry>
+                  <geom:polyline>
+                    <geom:coord>
+                      <geom:c1>0.0</geom:c1><geom:c2>-4.0</geom:c2>
+                    </geom:coord>
+                    <geom:coord>
+                      <geom:c1>0.0</geom:c1><geom:c2>4.0</geom:c2>
+                    </geom:coord>
+                  </geom:polyline>
+                </Geometry>
+              </FontSymbol_Polyline>
+            </Geometry>
+            <Font ili:ref="10"></Font>
+          </FontSymbol>
+          <!-- Cross -->
+          <FontSymbol ili:tid="105">
+            <Name>Cross</Name>
+            <Geometry>
+              <FontSymbol_Polyline>
+                <Color ili:ref="2"></Color>
+                <Geometry>
+                  <geom:polyline>
+                    <geom:coord>
+                      <geom:c1>-0.5</geom:c1><geom:c2>0.0</geom:c2>
+                    </geom:coord>
+                    <geom:coord>
+                      <geom:c1>0.5</geom:c1><geom:c2>0.0</geom:c2>
+                    </geom:coord>
+                  </geom:polyline>
+                </Geometry>
+              </FontSymbol_Polyline>
+              <FontSymbol_Polyline>
+                <Color ili:ref="2"></Color>
+                <Geometry>
+                  <geom:polyline>
+                    <geom:coord>
+                      <geom:c1>0.0</geom:c1><geom:c2>-0.5</geom:c2>
+                    </geom:coord>
+                    <geom:coord>
+                      <geom:c1>0.0</geom:c1><geom:c2>0.5</geom:c2>
+                    </geom:coord>
+                  </geom:polyline>
+                </Geometry>
+              </FontSymbol_Polyline>
+            </Geometry>
+            <Font ili:ref="10"></Font>
+          </FontSymbol>
+          <!-- X -->
+          <!-- It is not necessary to define this symbol, as it can be obtained by rotating a cross -->
          <!-- Symbol Signs -->
          <SymbolSign ili:tid="2001">
             <ili:Name>Symbol</ili:Name>
             <Scale>1.0</Scale>
+            <Rotation>45</Rotation>
             <Color ili:ref="2"></Color>
-            <Symbol ili:ref="101"></Symbol>
+            <Symbol ili:ref="105"></Symbol>
          </SymbolSign>
       </StandardSigns>
    </ili:datasection>
