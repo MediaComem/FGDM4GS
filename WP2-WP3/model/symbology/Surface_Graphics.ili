@@ -21,6 +21,8 @@ MODEL Surface_Graphics (en) AT "http://www."
             GRAPHIC Surface_Graphics
                 BASED ON Polygon.Polygon.Polygon =
                 Symbol OF StandardSymbology.StandardSigns.SurfaceSign: (
+                    !! HatchAng := 45; !! Angle de hachure
+                    !! L'attribut HatchOrg peut également être utilisé pour définir l'origine de la hachure
                     Priority := 1
                 );
             END Surface_Graphics;
