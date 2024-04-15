@@ -796,6 +796,13 @@ Note: La classe `PolylineSign` permet de définir des styles de lignes. Dans l'e
 Note: La classe `PolylineSign` correspond à un `LineSymbolizer` dans SLD/SE et aux classes d'exigences [8. Requirements Class “Basic Vector Features Styling”](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23) et [13.  Requirements Classes for Advanced strokes](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc38) dans SymCore.
 
 ----
+### PolylineSign
+
+- ~~Casing & Centerline or Cased lines~~
+
+Note: Les Cased Lines ou encore Casing and Centerline ne semblent pas être prises en charge par le modèle StandardSymbology. Il ne semble, de fait, pas possible de superposer plusieurs Symbolizer pour un même Selector (information à vérifier). Veiller également à vérifier si les références dans les xtf sont correctes.
+
+----
 ### SymbolSign
 
 ```xml
@@ -902,6 +909,14 @@ Note: La classe `SymbolSign` correspond à un `PointSymbolizer` dans SLD/SE et a
 
 Note: La classe `SurfaceSign` correspond à un `PolygonSymbolizer` dans SLD/SE et aux classes d'exigences [8. Requirements Class “Basic Vector Features Styling”](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc23) et [14. Requirements Classes for Advanced fills](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc43) dans SymCore.
 
+----
+### SurfaceSign
+
+- ~~Pattern Fill~~
+- Clip ?
+
+
+Note: Le modèle StandardSymbology ne semble pas prendre en charge le remplissage avec  un Patern (motif). A quoi sert et comment utiliser l'attribut `Clip` (inside, outside) du modèle StandardSymbology?
 ----
 ### TextSign
 
