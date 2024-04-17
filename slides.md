@@ -891,6 +891,14 @@ Note: Pour définir des implantations ponctuelles, INTERLIS définit la classe `
 ----
 ### SymbolSign
 
+- ClipSymbol?
+- [Point_Graphics_Signatures.xtf](https://github.com/MediaComem/FGDM4GS/blob/main/WP2-WP3/model/symbology/Point_Graphics_Signatures.xtf#L73)
+
+Note: Vérifier sir le ClipSymbol est correctement utilisé dans l'exemple ci-dessus.
+
+----
+### SymbolSign
+
 - SLD/SE
   - PointSymbolizer
 - SymCore
@@ -915,9 +923,9 @@ Note: La classe `SurfaceSign` correspond à un `PolygonSymbolizer` dans SLD/SE e
 
 - ~~Pattern Fill~~
 - Clip ?
+- HatchOrg ?
 
-
-Note: Le modèle StandardSymbology ne semble pas prendre en charge le remplissage avec  un Patern (motif). A quoi sert et comment utiliser l'attribut `Clip` (inside, outside) du modèle StandardSymbology?
+Note: Le modèle StandardSymbology ne semble pas prendre en charge le remplissage avec  un Patern (motif). A quoi sert et comment utiliser l'attribut `Clip` (inside, outside) du modèle StandardSymbology? Le paramètre HatchOrg ne semble pas pouvoir être utilisé correctement.
 ----
 ### TextSign
 
@@ -986,7 +994,6 @@ Note: Pour définir des implantations de type texte, INTERLIS définit la classe
 - `Spacing` (TextSignSymbolAssoc)?
 - `Padding` en lieu et place de `BottomBase`?
 - `ClipBox` (~~Color~~,~~Width~~,~~Cap~~,~~DashRec~~)
-
 
 ```interlis
 ASSOCIATION TextSignSymbolAssoc =
