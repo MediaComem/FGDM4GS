@@ -23,6 +23,7 @@ MODEL Surface_Graphics (en) AT "http://www."
                 Symbol OF StandardSymbology.StandardSigns.SurfaceSign: (
                     HatchAng := 45; !! Angle de hachure
                     !! L'attribut HatchOrg peut également être utilisé pour définir l'origine de la hachure
+                    !! Cet attribut ne peux cependant pas être utilisé sans générer une erreur avec ili2c
                     Priority := 1
                 );
             END Surface_Graphics;

@@ -37,6 +37,13 @@
             <Type>text</Type>
             <BottomBase>0.3</BottomBase>
          </Font>
+         <!-- Signature nécessaire à l'utilisation du paramètre Spacing avec TextSign
+         Une association (TextSignSymbolAssoc) entre TextSign et  FontSymbol
+         semble cependant manquer dans le modèle StandardSymbology -->
+         <!-- <FontSymbol ili:tid="200">
+            <Font ili:ref="11"></Font>
+            <Spacing>2</Spacing>
+         </FontSymbol> -->
          <!-- Text Sign -->
          <TextSign ili:tid="1001">
             <ili:Name>Linefont_18</ili:Name>
@@ -45,8 +52,8 @@
             <Slanted>false</Slanted>
             <Underlined>false</Underlined>
             <Striked>false</Striked>
-            <ClipBox>0.0</ClipBox>
-            <Font ili:ref="11"></Font>
+            <ClipBox>.0</ClipBox>
+            <Font ili:ref="11"></Font>            
             <Color ili:ref="2"></Color>
          </TextSign>
       </StandardSigns>

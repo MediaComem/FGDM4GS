@@ -594,7 +594,7 @@ CLASS FontSymbol =
 END FontSymbol;
 ```
 
-Note: Dans le modèle StandardSymbology, les symboles peuvent être définis soit relativement à une Font (glyphe), soit en décrivant leur géométrie dans la Signature graphique (fichier *.xtf). Le recours a un graphique externe (ExternalGraphic) n'est, en revanche, pas possible. Afin de pouvoir utiliser les Fonts [Cadastra](https://www.cadastre.ch/fr/manual-av/service/cadastral-map.html), il est nécessaire de convertir les codes des symboles unicode pouvant être visualisés avec [FontDrop](https://fontdrop.info/) en base 10. Cela peut être réalisé avec des outils en ligne tels que [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
+Note: Dans le modèle StandardSymbology, les symboles peuvent être définis soit relativement à une Font (glyphe), soit en décrivant leur géométrie dans la Signature graphique (fichier *.xtf). Le recours a un graphique externe (ExternalGraphic) n'est, en revanche, pas possible. Afin de pouvoir utiliser les Fonts [Cadastra](https://www.cadastre.ch/fr/manual-av/service/cadastral-map.html), il est nécessaire de convertir les codes des symboles unicode pouvant être visualisés avec [FontDrop](https://fontdrop.info/) en base 10. Cela peut être réalisé avec des outils en ligne tels que [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html). Il est possible de créer une Font à partir de symboles `*.svg` avec [Fontello - icon fonts generator](https://fontello.com/).
 
 ----
 ### PolyligneSign
@@ -798,9 +798,10 @@ Note: La classe `PolylineSign` correspond à un `LineSymbolizer` dans SLD/SE et 
 ----
 ### PolylineSign
 
-- ~~Casing & Centerline or Cased lines~~
+- Casing & Centerline or Cased lines
+- ~~Label le long d'une ligne~~
 
-Note: Les Cased Lines ou encore Casing and Centerline ne semblent pas être prises en charge par le modèle StandardSymbology. Il ne semble, de fait, pas possible de superposer plusieurs Symbolizer pour un même Selector (information à vérifier). Veiller également à vérifier si les références dans les xtf sont correctes.
+Note: Les Cased Lines ou encore Casing and Centerline peuvent être représentées en utilisant plusieurs Baskets et StandardSigns successifs. Cela pourrait cependant être décrit de manière plus compact. Cette propriété fait également défaut dans SE. Bien que la possiblité n'existe pas non plus au niveau de SE, il n'est pas possible de définir un style pour un Label long d'une ligne qui suive son orientation.
 
 ----
 ### SymbolSign
@@ -920,8 +921,6 @@ Note: Le modèle StandardSymbology ne semble pas prendre en charge le remplissag
 ----
 ### TextSign
 
-- `Spacing` (FontSymbol)?
-
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -984,6 +983,24 @@ Note: Pour définir des implantations de type texte, INTERLIS définit la classe
 ----
 ### TextSign
 
+- `Spacing` (TextSignSymbolAssoc)?
+- `Padding` en lieu et place de `BottomBase`?
+- `ClipBox` (~~Color~~,~~Width~~,~~Cap~~,~~DashRec~~)
+
+
+```interlis
+ASSOCIATION TextSignSymbolAssoc =
+  Symbol2 -- {1} FontSymbol;
+  TextSign -- {0..*} TextSign;
+END SymbolSignSymbolAssoc;
+```
+
+Note: Il semble manquer une association pour pouvoir utiliser le `Spacing` avec un `TextSign`. La définition de cette association est définie ci-dessus.
+Il ne semble pas possible d'agir directement sur le style de l'encadré autour du texte `ClipBox`. LEs valeurs des paramètres liés au `TextSign` s'applique mais le `ClipBox` ne peut pas être rendu de manière indépendante (p.ex. encadré vert autour d'un texte en jaune), L'épaisseur ne peut non plus être modifiée autrement qu'en sollicitant une Font de type `Bold`. Aucune option ne semble non plus pour la terminaison et le traitillé.
+
+----
+### TextSign
+
 - SLD/SE
   - TextSymbolizer
 - SymCore
@@ -991,6 +1008,12 @@ Note: Pour définir des implantations de type texte, INTERLIS définit la classe
 
 Note: La classe `TextSign` correspond à un `TextSymbolizer` dans SLD/SE et à la classe d'exigences [10. Requirements Classes for Labeling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc29) dans SymCore.
 
+----
+### Coverage styling
+
+- non défini
+
+Note: Aucune possibilité de représentation de Coverage ([Requirements Classes for Coverage styling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc26) dans SymCore, `RasterSymbolizer` au niveau de SE) n'est définie dans le modèle StandardSymbology.
 
 ---
 ### Perspectives

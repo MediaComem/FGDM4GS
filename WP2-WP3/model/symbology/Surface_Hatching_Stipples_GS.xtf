@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- File Surface_Graphics_Signatures.xtf 2024-03-22 -->
+<!-- File Surface_Hatching_Stipples_GS.xtf 2024-04-17 -->
 
 <ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
   xmlns:geom="http://www.interlis.ch/geometry/1.0"
@@ -11,7 +11,7 @@
          <ili:model>Surface_Graphics</ili:model>
       </ili:models>
       <ili:sender>HEIG-VD</ili:sender>
-      <ili:comment>Basic example of Surface_Graphics Signatures</ili:comment>
+      <ili:comment>Basic example of Surface Hatching and Stipples Graphics Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
       <StandardSigns ili:bid="REFHANDB00000002">
@@ -45,9 +45,10 @@
          <!-- Surface Signs -->
          <SurfaceSign ili:tid="5001">
             <ili:Name>fill</ili:Name>
-            <!-- Comprendre à quoi correspond le paramètre Clip (inside, outside) -->
-            <!-- <Clip>inside</Clip> -->
             <FillColor ili:ref="1"></FillColor>
+            <!-- Hatches -->
+            <HatchOffset>2</HatchOffset>
+            <!-- Hatch Symbol -->
          </SurfaceSign>
          <!-- Polyline Signs -->
          <PolylineSign ili:tid="3001">
