@@ -544,6 +544,31 @@ END BaseModel_SectoralPlans_LV95_V1_4_d.
 Note: Les exemples de `VIEWS` pour les modèles de données sélectionnés ont été définis en INTERLIS. Ces exemples illustrent les possibilités offertes par INTERLIS pour la définition de `VIEWS`. Les `VIEWS` ont été définies pour les modèles de données suivants: Axis_LV95_V1_1, IVS_V2_1, Planungszonen_V1_1 et BaseModel_SectoralPlans_LV95_V1_4.
 
 ----
+### Modèles de représentation
+
+- Définition de StandardSigns de base
+
+Note: A des fins d'apprentissage et de dissémination des connaissances acquises, les SymbolSign les plus courants ont été définis. Il s'agit notamment de `PolylineSign`, `SymbolSign`, `SurfaceSign` et `TextSign`. Associé à cela, des modèles et signatures graphiques supplémentaires ont été définis afin de pouvoir éprouver les capactiés de représentation graphique d'INTERLIS. Il s'agit de notamment de Casing & Centerline, du StartSymbol d'un PolylineSign, de PatternStroke et finalement de Hatching. 
+
+----
+### Modèles de représentation
+
+- StandardSymbology -> INTERLIS 2.4
+  - Problèmes de compatibilité
+  - 2/4 modèle graphique
+- 0 modèle graphique
+
+Note: Afin de pouvoir définir des modèles graphiques, il est nécessaire de mettre à niveau les modèles de bases vers INTERLIS 2.4 car le modèle StandardSymbology est défini en INTERLIS 2.4. Cela n'a pu être réalisé que pour 2/4 modèles, les autres nécessitant trop d'adaptations au niveau de leur dépendances pour ne pas rencontrer d'erreurs de validation. Finalement, aucun modèle graphique n'a pu être défini.
+
+----
+### Modèles de représentation
+
+- `SurfaceBoundary_Graphics` != `VIEW`
+- Selector & datatype
+
+Note: `SurfaceBoundary_Graphics` n'est pas utilisable si la géométrie de la surface concernée intervient dans une `VIEW` car cette dernière n'est ainsi plus décomposable. Les valeurs de paramètres sont limitées pour les sélecteurs dans le modèle graphique. Elles ne peuvent correspondre qu'a des valeurs numériques on des string basiques, sans espaces, ni accents, ni caractères spéciaux. Cela pose donc des contraintes pour le modèle de données comme par exemple les modèles du fichier [IVS_V3_gm.ili](https://github.com/MediaComem/FGDM4GS/tree/main/WP2-WP3/model/IVS_V2_1/IVS_V2_1/IVS_V3_gm.ili) ((`WHERE ivs_signatur_label == #Nationale Bedeutung, historischer Verlauf mit viel Substanz`)).
+
+----
 ### Premières conclusions
 
 - Aucune `VIEWS` dans les MGDM
@@ -798,10 +823,10 @@ Note: La classe `PolylineSign` correspond à un `LineSymbolizer` dans SLD/SE et 
 ----
 ### PolylineSign
 
-- Casing & Centerline or Cased lines
+- Casing & Centerline or Cased lines (> 1 Basket ~ Symbolizer)
 - ~~Label le long d'une ligne~~
 
-Note: Les Cased Lines ou encore Casing and Centerline peuvent être représentées en utilisant plusieurs Baskets et StandardSigns successifs. Cela pourrait cependant être décrit de manière plus compact. Cette propriété fait également défaut dans SE. Bien que la possiblité n'existe pas non plus au niveau de SE, il n'est pas possible de définir un style pour un Label long d'une ligne qui suive son orientation.
+Note: Les Cased Lines ou encore Casing and Centerline peuvent être représentées en utilisant plusieurs Baskets et StandardSigns successifs (correspondant à des symbolizers). Cela pourrait cependant être décrit de manière plus compact. Cette propriété fait également défaut dans SE. Bien que la possiblité n'existe pas non plus au niveau de SE, il n'est pas possible de définir un style pour un Label long d'une ligne qui suive son orientation.
 
 ----
 ### SymbolSign
@@ -921,11 +946,12 @@ Note: La classe `SurfaceSign` correspond à un `PolygonSymbolizer` dans SLD/SE e
 ----
 ### SurfaceSign
 
+- ~~Surface_Boundary~~
 - ~~Pattern Fill~~
 - Clip ?
 - HatchOrg ?
 
-Note: Le modèle StandardSymbology ne semble pas prendre en charge le remplissage avec  un Patern (motif). A quoi sert et comment utiliser l'attribut `Clip` (inside, outside) du modèle StandardSymbology? Le paramètre HatchOrg ne semble pas pouvoir être utilisé correctement.
+Note: Au niveau de la `STRUCTURE` `FontSymbol_Surface`, il est fait mention de la remarque suivante: "Has no line symbology, because the boundary is *not* part of the surface" qui n'est pas opprtun, car cela nécessite de décomposer la géométrie d'un surface si on veut pouvoir représenter une `Surface_Boundary`, ce qui n'est, du reste, pas possible si on souhaite y accéder dans le cas d'une `VIEW` (voir exemple Planungszonen_V2_gm.ili). Le modèle StandardSymbology devrait donc être adapté pour associer/inclure `Surface_Boundary` à la classe `SurfaceSign`. Le modèle StandardSymbology ne semble pas non plus prendre en charge le remplissage avec  un Patern (motif). A quoi sert et comment utiliser l'attribut `Clip` (inside, outside) du modèle StandardSymbology? Le paramètre HatchOrg ne semble pas pouvoir être utilisé correctement.
 ----
 ### TextSign
 
@@ -1016,6 +1042,63 @@ Il ne semble pas possible d'agir directement sur le style de l'encadré autour d
 Note: La classe `TextSign` correspond à un `TextSymbolizer` dans SLD/SE et à la classe d'exigences [10. Requirements Classes for Labeling](https://opengeospatial.github.io/ogcna-auto-review/18-067r4.html#toc29) dans SymCore.
 
 ----
+### Markers
+
+- Mark ~ FontSymbol
+- Mark
+  - ExternalGraphic
+  - WellKnownName (square, circle, triangle, star, cross, and x)
+- FontSymbol
+  - Geometry
+  - TrueType Font (UCS4) ~ OnlineResource & MarkIndex
+
+----
+### Markers
+#### INTERLIS
+
+```xml
+<Font ili:tid="301">
+  <Name>CadastraSymbol-Regular</Name>
+  <Internal>false</Internal>
+  <Type>text</Type>
+</Font>
+<FontSymbol ili:tid="201">
+  <Name>Tree</Name>            
+  <UCS4>0077</UCS4>
+  <Font ili:ref="301"></Font>
+</FontSymbol>
+```
+
+----
+### Markers
+#### SE
+
+```xml
+<PointSymbolizer>
+	<Graphic>
+		<se:Mark>
+			<se:OnlineResource xlink:type="simple" xlink:href="ttf://Dingbats"/>
+			<se:Format>ttf</se:Format>
+			<se:MarkIndex>10733</se:MarkIndex>
+			<se:Fill>
+				<se:SvgParameter name="fill">#ff0000</se:SvgParameter>
+			</se:Fill>
+		</se:Mark>
+		<se:Size>29</se:Size>
+	</Graphic>
+</PointSymbolizer>
+```
+
+Note: En ce qui concerne les Markers, une `Mark` (SE) correspond à un `FontSymbol` (INTERLIS). Une `Mark` peut être défini par un `WellKnownName` (carré, cercle, triangle, étoile, croix et x) ou par un `ExternalGraphic`. Un `FontSymbol` peut être défini par une `Geometry` ou une `TrueType Font` (UCS4) également défini par SE comme combinaison de `OnlineResource` et `MarkIndex`. (Une incertitude subsiste relativement à l'usage de <se:Mark> ou <se:ExternalGraphic> pour les Markers).
+
+----
+### Dst & VIEW
+
+- Dst & VIEW
+
+Note: Les VIEW sont également nécessaires dans le cadre des modèles de représentation car permettent car elles permettent d'associer des attributs intervenant dans plusieurs classes et donc non mobilisables pour l'application d'un style.
+
+----
 ### Coverage styling
 
 - non défini
@@ -1046,6 +1129,15 @@ Note: Dans le cas de modèles existants pour lesquels des géoservices ont pu ê
 Note: Pour favoriser l'interopéralité entre INTERLIS et les autres langages de description de styles cartographiques, il s'agit en premier lieu de créer un mapping entre INTERLIS, OGC SE & SymCore. Cela afin de pouvoir intégrer INTERLIS à un convertisseur de styles cartographiques (p.ex. GeoStyler, bridge-style) ou à un éditeur de style cartographique (p.ex. GeoStyler, ou à un équivalent de pySLD). Finalement, afin de pouvoir convertir des feuilles de style vers le modèle et la signature graphique INTERLIS, il semble nécessaire de devoir recourir au modèle de données INTERLIS associé.
 
 ---
+### Recommendations
+#### Généralités
+
+- INTERLIS 2.4 & 2.3
+- StandardSymbology (2.4)
+
+Note: Veiller à mettre à jour les modèles INTERLIS 2.3 vers la version 2.4 pour garantir le fonctionnement avec le modèle StandardSymbology.
+
+----
 ### Recommendations
 #### Dénormalisation
 
@@ -1095,6 +1187,27 @@ Note: Il serait intéressant d'intégrer des liens entre les différentes ressou
 - [geobasisdaten.ch](https://geobasisdaten.ch) ➡ [geocat.ch]((https://www.geocat.ch/geonetwork/srv/eng/catalog.search#/home)) `type='model'`
 
 Note: Il serait intéressant de mettre en réseau les ressources INDG (geobasisdaten.ch, geocat.ch, WMS, WFS etc.) pour faciliter la navigation entre ces ressources. Cela est tout particulièrement vrai pour geocat.ch qui distingue les modèles de données des géoservices et des datasets pour lesquels il n'existe pas de lien interne. Une première étape consisterait à récuperer les références MGDM au niveau des enregistrements correspondants aux modèles sur geocat.ch. On obtiendrait ainsi une correspondance entre les modèles de données et les géoservices permettant d'ajouter des liens entre les deux ressources. Les liens pourraient finalement être mis à jour sur geobasisdaten.ch afin de référencer les modèles et non plus les services. Une démarche similaire pourrait être envisagée pour les autres ressources. Il est également à noter seuls le contexte des MGDM et de geobasisdaten.ch a été pris en compte. D'autres ressources tels que [models.geo.admin.ch](https://models.geo.admin.ch/) ou d'autres model repository pourraient également être pris en compte.
+
+----
+### Recommendations
+#### Mise en réseau des ressources
+
+- Font (p.ex. WESP Font)
+- ExternalGraphic (OnlineResource)
+- svg
+
+Note: Si la représentation graphique utilise des ressources particulières pour un graphique, il serait bien que les Font puissent être accessibles en ligne (p.ex. WESP Font) et que les ExternalGraphic puissent être également disponibles via une opération GetStyles ou alors il conviendrait préférablement de privilégier des ressources de type svg.
+
+----
+### Recommendations
+#### Mise en réseau des ressources
+
+- Download-Dienst
+- DarstellungsDienst (GetMap, GetLegendGraphic, GetStyles)
+- [OeREB models](https://models.geo.admin.ch/V_D/OeREB/)
+- Metadata (geocat.ch, geobasisdaten.ch) ?
+
+Note: Afin de pouvoir mettre en réseau les ressources, il serait intéressant de décrire les ressources liées dans le modèle soit le service de téléchargement pour le modèle de données, le service de représentation avec toutes les opérations liées (GetMap, GetLegendGraphic, GetStyles) de même que les liens vers les métadonnées associées (geocat.ch, geobasisdaten.ch, ressources web de l'office concerné). Les modèles ili associés au [Modèle-cadre](https://backend.cadastre-manual.admin.ch/fileservice/sdweb-docs-prod-cadastremanch-files/files/2023/07/24/eca12a6a-5fee-4ac5-9c37-5b67ae6adeea.pdf) du cadastre RDPPF en offre un bel exemple.
 
 ----
 ### Recommendations
