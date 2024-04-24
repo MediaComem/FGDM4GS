@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- File Planungszonen_V1_1_Symbols.xtf 2023-01-03 -->
+<!-- File Planungszonen_V2_Symbols.xtf 2024-01-03 -->
 <ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
   xmlns:geom="http://www.interlis.ch/geometry/1.0"
   xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
@@ -8,11 +8,11 @@
   <ili:headersection>
     <ili:models>
       <ili:model>StandardSymbology</ili:model>
-      <!-- See how to specify the model without getting an error message (modeldir command not working) -->
-      <!-- <ili:model>Planungszonen_V1_1_gm</ili:model> -->
+      <!-- Clarify if the reference to the grafic model is needed -->
+      <ili:model>Planungszonen_V2_gm</ili:model>
     </ili:models>
     <ili:sender>HEIG-VD</ili:sender>
-    <ili:comment>Planungszonen_V1_1 Symbology</ili:comment>
+    <ili:comment>Planungszonen_V2 Grafic Modell Signatures</ili:comment>
   </ili:headersection>
   <ili:datasection>
     <!-- Define the StandardSigns -->
@@ -56,12 +56,10 @@
         </PolylineAttrs>
         <!-- Define the surface signs -->
         <!-- The reference to style ids in the "Layers" tab of the Excel file seems to be missing. -->
-        <!-- Better understand the implicit tid numbering convention -->
+        <!-- Clarify the implicit tid numbering convention -->
         <SurfaceSign ili:tid="5001">
             <ili:Name>Kanton</ili:Name>
             <FillColor ili:ref="1"></FillColor>
-            <!-- Check how to reference the Border attribute which is defined in the SurfaceSignBorderAssoc association of the StandardSymbology model  -->
-            <!-- <Border ili:ref="4001"></Border> -->
         </SurfaceSign>
         <SurfaceSign ili:tid="5002">
             <ili:Name>Gemeinde</ili:Name>
@@ -71,24 +69,11 @@
             <ili:Name>andere</ili:Name>
             <FillColor ili:ref="3"></FillColor>
         </SurfaceSign>
-        <FontSymbol_Polyline>
+        <!-- Cannot be used here as it cannot be defined in the graphic model -->
+        <!-- <FontSymbol_Polyline>
             <Color ili:ref="3"></Color>
             <LineAttrs ili:ref="4001"></LineAttrs>
-            <!-- Understand how to describe the geometry of the symbol (the values here have been arbitrary chosen) -->
-            <!-- Why do we need to have this geometry attribute? -->
-            <Geometry>
-                <geom:polyline>
-                    <geom:coord>
-                        <geom:C1>0</geom:C1>
-                        <geom:C2>0</geom:C2>
-                    </geom:coord>
-                    <geom:coord>
-                        <geom:C1>0</geom:C1>
-                        <geom:C2>10</geom:C2>
-                    </geom:coord>
-                </geom:polyline>
-            </Geometry>
-        </FontSymbol_Polyline>
+        </FontSymbol_Polyline> -->
     </StandardSigns>
   </ili:datasection>
 </ili:transfer>

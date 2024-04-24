@@ -1,0 +1,79 @@
+INTERLIS 2.3;
+!! Erstellung von VIEW basierend auf dem Modell Planungszonen_V1_1, um die Attribute auszuwählen, die in einem Geoservice dargestellt werden sollen.
+MODEL Planungszonen_V1_1_d_A
+AT "mailto:maxime.collombin@heig-vd.ch"
+VERSION "2023-12-04" =
+    IMPORTS Planungszonen_V1_1;
+    TOPIC PZ_d EXTENDS Planungszonen_V1_1.Geobasisdaten =
+      VIEW view_pz
+        JOIN OF Planungszonen_V1_1.Geobasisdaten.Planungszone, Planungszonen_V1_1.Geobasisdaten.Typ_Planungszone; 
+        WHERE 
+           Planungszone->TypPZ == Typ_Planungszone;
+           =
+        ATTRIBUTE
+         wkb_geometry := Planungszone -> Geometrie;
+         publiziert_ab := Planungszone -> publiziertAb;
+         gueltig_bis := Planungszone -> publiziertBis;
+         rechtsstatus := Planungszone -> Rechtsstatus;
+         bemerkungen := Planungszone -> Bemerkungen;
+         code_typ := Typ_Planungszone -> Code;
+         bezeichnung_typ := Typ_Planungszone -> Bezeichnung;
+         abkuerzung_typ := Typ_Planungszone -> Abkuerzung;
+         festlegung_stufe_typ := Typ_Planungszone -> Festlegung_Stufe;
+         bemerkung_typ := Typ_Planungszone -> Bemerkungen;
+      END view_pz;
+    END PZ_d;
+END Planungszonen_V1_1_d_A.
+MODEL Planungszonen_V1_1_d_B
+AT "mailto:maxime.collombin@heig-vd.ch"
+VERSION "2023-12-04" =
+    IMPORTS Planungszonen_V1_1;
+    TOPIC PZ_d EXTENDS Planungszonen_V1_1.Geobasisdaten =
+      VIEW view_pz 
+        PROJECTION OF TypPZ_Planungszone;
+           =
+        ATTRIBUTE
+         wkb_geometry := TypPZ_Planungszone -> Planungszone -> Geometrie;
+         publiziert_ab := TypPZ_Planungszone -> Planungszone -> publiziertAb;
+         gueltig_bis := TypPZ_Planungszone -> Planungszone -> publiziertBis;
+         rechtsstatus := TypPZ_Planungszone -> Planungszone -> Rechtsstatus;
+         bemerkungen :=  TypPZ_Planungszone -> Planungszone -> Bemerkungen;
+         code_typ := TypPZ_Planungszone -> TypPZ -> Code;
+         bezeichnung_typ := TypPZ_Planungszone -> TypPZ -> Bezeichnung;
+         abkuerzung_typ := TypPZ_Planungszone -> TypPZ -> Abkuerzung;
+         festlegung_stufe_typ := TypPZ_Planungszone -> TypPZ -> Festlegung_Stufe;
+         bemerkung_typ := TypPZ_Planungszone -> TypPZ -> Bemerkungen;
+      END view_pz;
+    END PZ_d;
+END Planungszonen_V1_1_d_B.
+!! Definition des grafischen Modells
+MODEL Planungszonen_V1_1_gm
+AT "mailto:maxime.collombin@heig-vd.ch"
+  VERSION "2023-12-22" =
+  IMPORTS Planungszonen_V1_1_d_B;
+  IMPORTS StandardSymbology;
+  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    OBJECTS OF PolylineSign: continuous;
+  TOPIC Graphics =
+    DEPENDS ON Planungszonen_V1_1_d_B.PZ_d;
+    VIEW Surface_Boundary
+      INSPECTION OF Planungszonen_V1_1_d_B.PZ_d.view_pz -> wkb_geometry;
+      =
+      ATTRIBUTE
+        ALL OF Planungszonen_V1_1_d_B.PZ_d.view_pz;
+    END Surface_Boundary;
+    !! VIEW Surface_Boundary2
+    !!   INSPECTION OF Base ~ Surface_Boundary -> Lines;
+    !!   =
+    !!   ATTRIBUTE
+    !!     Geometry := Base -> Geometry;
+    !! END Surface_Boundary2;
+    !! GRAPHIC SurfaceBoundary_Graphics
+    !!   BASED ON Surface_Boundary2 =
+    !!   Boundary OF StandardSymbology.StandardSigns.PolylineSign: (
+    !!     Sign := {continuous};
+    !!     Geometry := Geometry;
+    !!     Priority := 101);
+    !! END SurfaceBoundary_Graphics;
+  END Graphics;
+END Planungszonen_V1_1_gm.

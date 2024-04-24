@@ -1,0 +1,30 @@
+INTERLIS 2.3;
+MODEL Surface_Graphics (en) AT "http://www."
+    VERSION "2024-01-25" =
+    IMPORTS Planungszonen_V1_1;
+    IMPORTS StandardSymbology;
+    SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+      OBJECTS OF PolylineSign: continuous;
+        TOPIC Graphics =
+            DEPENDS ON Planungszonen_V1_1.Geobasisdaten;
+            VIEW Surface_Boundary
+                INSPECTION OF Planungszonen_V1_1.Geobasisdaten.Planungszone -> Geometrie;
+                =
+            ATTRIBUTE
+                ALL OF Planungszone;
+            END Surface_Boundary;
+            VIEW Surface_Boundary2
+                INSPECTION OF Base ~ Surface_Boundary -> Lines;
+                =
+            ATTRIBUTE
+                Geometry := Base -> Geometry;
+            END Surface_Boundary2;
+            GRAPHIC SurfaceBoundary_Graphics
+                BASED ON Surface_Boundary2 =
+                Boundary OF StandardSymbology.StandardSigns.PolylineSign: (
+                 Sign := {continuous};
+                 Geometry := Geometry;
+                 Priority := 1);
+            END SurfaceBoundary_Graphics;
+        END Graphics;
+END Surface_Graphics.

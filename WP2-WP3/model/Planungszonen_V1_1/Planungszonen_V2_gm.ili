@@ -1,0 +1,39 @@
+INTERLIS 2.4;
+!! Version | Date       | Who     | Modification
+!!-------------------------------------------------------------------------------------------
+!! 1.O     | 2023-12-22 | HEIG-VD | - Erstellung des Modells
+MODEL Planungszonen_V2_gm
+AT "mailto:maxime.collombin@heig-vd.ch"
+  VERSION "2023-12-22" =
+  IMPORTS Planungszonen_V2_d_B;
+  IMPORTS StandardSymbology;
+  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    OBJECTS OF SurfaceSign: Kanton, Gemeinde, andere;
+  TOPIC Graphics =
+    DEPENDS ON Planungszonen_V2_d_B.PZ_d;
+    GRAPHIC Surface_Graphics
+      BASED ON Planungszonen_V2_d_B.PZ_d.view_pz =
+      Kanton OF StandardSymbology.StandardSigns.SurfaceSign:
+        WHERE festlegung_stufe_typ == #Kanton (
+          Sign := {Kanton};
+          Geometry := wkb_geometry;
+          Priority := 100);
+      Gemeinde OF StandardSymbology.StandardSigns.SurfaceSign:
+        WHERE festlegung_stufe_typ == #Gemeinde (
+          Sign := {Gemeinde};
+          Geometry := wkb_geometry;
+          Priority := 100);
+      andere OF StandardSymbology.StandardSigns.SurfaceSign:
+        WHERE festlegung_stufe_typ == #andere (
+          Sign := {andere};
+          Geometry := wkb_geometry;
+          Priority := 100);
+    END Surface_Graphics;
+    /*
+    Surface_Boundary ne peut être défini ni à partir de Planungszonen_V2_d_B.PZ_d.view_pz,
+    ni à partir de Planungszonen_V2_d_A.PZ_d.view_pz car il n'est pas possible de décomposer
+    la géométrie d'une surface intervenant dans une `VIEW`. La représentation des limites de surface
+    n'est donc intégrée ni dans le modèle graphique, ni dans la signature graphique.
+    */
+  END Graphics;
+END Planungszonen_V2_gm.

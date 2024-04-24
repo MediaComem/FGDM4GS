@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File Point_Graphics_Signatures.xtf 2024-03-22 -->
+
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+  xmlns:geom="http://www.interlis.ch/geometry/1.0"
+  xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ili:headersection>
+    <ili:models>
+        <ili:model>IVS_V3_gm</ili:model>
+    </ili:models>
+    <ili:sender>HEIG-VD</ili:sender>
+    <ili:comment>IVS_V3 Grafic Modell Signatures</ili:comment>
+  </ili:headersection>
+  <ili:datasection>
+    <StandardSigns ili:bid="Symb01">
+        <!-- Color Library -->
+        <Color ili:tid="1">
+          <Name>Davy's Grey</Name>
+          <L>0.0</L>
+          <C>0.0</C>
+          <H>0.0</H>
+          <T>1.0</T>
+        </Color>
+        <Color ili:tid="2">
+          <Name>Blue</Name>
+          <L>29.57</L>
+          <C>131.19</C>
+          <H>301.36</H>
+          <T>1.0</T>
+        </Color>
+        <Color ili:tid="3">
+          <Name>Red</Name>
+          <L>54.29</L>
+          <C>106.84</C>
+          <H>40.86</H>
+          <T>1.0</T>
+        </Color>
+        <Color ili:tid="4">
+          <Name>Aqua</Name>
+          <L>90.67</L>
+          <C>52.82</C>
+          <H>196.45</H>
+          <T>1.0</T>
+        </Color>
+    </StandardSigns>
+  </ili:datasection>
+</ili:transfer>

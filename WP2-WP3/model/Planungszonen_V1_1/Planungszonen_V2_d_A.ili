@@ -1,11 +1,11 @@
-INTERLIS 2.3;
-MODEL Planungszonen_V1_1_d_A
+INTERLIS 2.4;
+MODEL Planungszonen_V2_d_A
 AT "mailto:maxime.collombin@heig-vd.ch"
 VERSION "2023-12-04" =
-    IMPORTS Planungszonen_V1_1;
-    TOPIC PZ_d EXTENDS Planungszonen_V1_1.Geobasisdaten =
+    IMPORTS Planungszonen_V2;
+    TOPIC PZ_d EXTENDS Planungszonen_V2.Geobasisdaten =
       VIEW view_pz
-        JOIN OF Planungszonen_V1_1.Geobasisdaten.Planungszone, Planungszonen_V1_1.Geobasisdaten.Typ_Planungszone; 
+        JOIN OF Planungszonen_V2.Geobasisdaten.Planungszone, Planungszonen_V2.Geobasisdaten.Typ_Planungszone; 
         WHERE 
            Planungszone->TypPZ == Typ_Planungszone;
            =
@@ -22,4 +22,4 @@ VERSION "2023-12-04" =
          bemerkung_typ := Typ_Planungszone -> Bemerkungen;
       END view_pz;
     END PZ_d;
-END Planungszonen_V1_1_d_A.
+END Planungszonen_V2_d_A.

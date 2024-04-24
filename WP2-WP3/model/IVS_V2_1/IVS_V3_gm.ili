@@ -1,0 +1,33 @@
+INTERLIS 2.4;
+
+!! Version | Date       | Who     | Modification
+!!-------------------------------------------------------------------------------------------
+!! 1.O     | 2024-01-04 | HEIG-VD | - Création du modèle
+
+MODEL IVS_V3_gm
+AT "mailto:maxime.collombin@heig-vd.ch"
+  VERSION "2024-01-04" =
+  IMPORTS IVS_V3_d;
+  IMPORTS StandardSymbology;
+  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    OBJECTS OF SymbolSign: A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T
+    OBJECTS OF PolylineSign: SIGLIN_103,SIGLIN_102,SIGLIN_101,SIGLIN_203,SIGLIN_202,SIGLIN_201,SIGLIN_303,SIGLIN_302,SIGLIN_301;
+  TOPIC Graphics =
+    DEPENDS ON IVS_V3_d.IVS_Ik_d;
+    GRAPHIC Polyline_Graphics
+      BASED ON IVS_V3_d.IVS_Ik_d.ivs_nat =
+      !! Définition du sélecteur impossible en raison d'une incompatibilité du modèle (datatype incompatible)
+      SIGLIN_302 OF StandardSymbology.StandardSigns.PolylineSign:
+        WHERE ivs_signatur_label == #test_text (
+          Sign := {SIGLIN_302};
+          Geometry := wkb_geometry;
+          Priority := 1          
+        );
+
+      Symbol OF StandardSymbology.StandardSigns.PolylineSign: (
+        Geometry := wkb_geometry;
+        Priority := 1
+      );
+    END Polyline_Graphics;
+  END Graphics;
+END IVS_V3_gm.
