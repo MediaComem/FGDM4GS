@@ -227,7 +227,7 @@ END Test.
 
 Lien vers le [modèle](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasicViewProjectionDef.ili)
 
-Note: Selon le manuel de référence (refhb24), la vue projection (mot-clé PROJECTION OF) constitue la vue la plus simple. Elle permet de visualiser la classe de base (classe, structure, association ou vue) sous une forme modifiée (affichage d’une partie seulement des attributs et selon un ordre modifié, par exemple).
+Note: Selon le manuel de référence (refhb24), la vue projection (mot-clé PROJECTION OF) constitue la vue la plus simple. Elle permet de visualiser la classe de base (classe, structure, association ou vue) sous une forme modifiée (affichage d’une partie seulement des attributs et selon un ordre modifié, par exemple). Cela peut être utile pour simplifier l’affichage des données ou pour les adapter à un contexte particulier. Par exemple, on peut imaginer une vue qui affiche les données d'une table de données de manière plus conviviale afin notamment d'éviter d'avoir recours à `TRANSLATION OF` et de devoir retranscrire tout le modèle.
 
 ----
 #### `JOIN OF` & `WHERE`
@@ -270,8 +270,7 @@ END Test.
 
 Lien vers le [modèle](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasicJoinDef.ili)
 
-Note: Selon le manuel de référence (refhb24), la vue jonction (mot-clé JOIN OF) permet de former le produit cartésien (ou produit vectoriel) des classes de base (classe ou vue), c.-à-d. qu’il existe alors autant d’objets de la classe de jonction que de combinaisons d’objets des différentes classes de base. Le fait de lui associer une clause `WHERE` permet de définir les champs de jonction.
-
+Note: Selon le manuel de référence (refhb24), la vue jonction (mot-clé JOIN OF) permet de former le produit cartésien (ou produit vectoriel) des classes de base (classe ou vue), c.-à-d. qu’il existe alors autant d’objets de la classe de jonction que de combinaisons d’objets des différentes classes de base. Le fait de lui associer une clause `WHERE` permet de définir les champs de jonction. Cela peut être utile pour associer pour par exemple des définir des statistiques cantonales en matière de votation compte tenu de différents critères.
 ----
 #### `UNION OF`
 
@@ -300,8 +299,7 @@ END Test.
 
 Lien vers le [modèle](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasicUnionDef.ili)
 
-Note: Selon le manuel de référence (refhb24), la vue union (mot-clé UNION OF) permet la fusion de différentes classes de base en une classe unique. Les attributs des différentes classes de base sont généralement affectés à un attribut de la vue union. Le type d’attribut de la classe de base doit être compatible avec celui de la vue union (même type ou extension de celui-ci).
-
+Note: Selon le manuel de référence (refhb24), la vue union (mot-clé UNION OF) permet la fusion de différentes classes de base en une classe unique. Les attributs des différentes classes de base sont généralement affectés à un attribut de la vue union. Le type d’attribut de la classe de base doit être compatible avec celui de la vue union (même type ou extension de celui-ci). Cela permet par exemple de fusionner 2 jeux de données possédant une même structure.
 
 ----
 #### `AGGREGATION OF`
@@ -329,7 +327,7 @@ END Test.
 
 Lien vers le [modèle](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasicAggregationDef.ili)
 
-Note: Selon le manuel de référence (refhb24), la vue agrégation (mot-clé AGGREGATION OF) permet de regrouper, en une même instance, toutes les instances d’un ensemble de base ou celles présentant une identité avec la combinaison d’attributs requise.
+Note: Selon le manuel de référence (refhb24), la vue agrégation (mot-clé AGGREGATION OF) permet de regrouper, en une même instance, toutes les instances d’un ensemble de base ou celles présentant une identité avec la combinaison d’attributs requise. Cela permet par exemple de calculer des statistiques sur un ensemble de données.
 
 ----
 #### `INSPECTION OF`
@@ -356,7 +354,7 @@ END Test.
 
 Lien vers le [modèle](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasenameOfUnrenamedInspectionDef.ili)
 
-Note: Selon le manuel de référence (refhb24), la vue inspection (mot-clé INSPECTION OF) permet d’obtenir l’ensemble de tous les éléments structurés (définis via BAG OF, LIST OF ou dans le respect d’une ligne, d’une surface simple ou d’une partition d’un territoire) appartenant à un attribut de sous-structure (direct ou indirect) d’une classe d’objets.
+Note: Selon le manuel de référence (refhb24), la vue inspection (mot-clé INSPECTION OF) permet d’obtenir l’ensemble de tous les éléments structurés (définis via BAG OF, LIST OF ou dans le respect d’une ligne, d’une surface simple ou d’une partition d’un territoire) appartenant à un attribut de sous-structure (direct ou indirect) d’une classe d’objets. Cela permet d'exploser une liste d'éléments pour les afficher de manière structurée.
 
 ----
 ### Exemple MGDM #1
@@ -1128,6 +1126,17 @@ Note: Dans le cas de modèles existants pour lesquels des géoservices ont pu ê
 
 Note: Pour favoriser l'interopéralité entre INTERLIS et les autres langages de description de styles cartographiques, il s'agit en premier lieu de créer un mapping entre INTERLIS, OGC SE & SymCore. Cela afin de pouvoir intégrer INTERLIS à un convertisseur de styles cartographiques (p.ex. GeoStyler, bridge-style) ou à un éditeur de style cartographique (p.ex. GeoStyler, ou à un équivalent de pySLD). Finalement, afin de pouvoir convertir des feuilles de style vers le modèle et la signature graphique INTERLIS, il semble nécessaire de devoir recourir au modèle de données INTERLIS associé.
 
+----
+### Questions ouvertes
+
+- Clip (SurfaceSign)?
+- Clip (SymbolSign) ?
+- HatchOrg (SurfaceSign)?
+- Spacing (TextSign)?
+- CondSignParamAssignment & Logical-Expression
+
+Note: Les symbolizers suivant n'ont pas pu être correctement compris/appliqués: Clip (SurfaceSign), Clip (SymbolSign), HatchOrg (SurfaceSign), Spacing (TextSign). Les options de filtre au niveau du selecteur semblent être très limités mais cela doit pouvoir être confirmé par les participant.e.s au workshop. Ces questions ont été communiquées sur le forum Discourse INTERLIS (cf [lien]()).
+
 ---
 ### Recommendations
 #### Généralités
@@ -1169,13 +1178,24 @@ Note: Il serait intéressant de modifier le code source de ili2db pour la prise 
 
 ----
 ### Recommendations
+#### Grammaire (E)BNF
+
+- [#6 Grammar file for download](https://github.com/geostandards-ch/doc_refhb24/issues/6)  
+
+Note: Dans une perspective de validation et d'évolution, il serait important que la grammaire (E)BNF d'INTERLIS soit disponible en téléchargement indépendemment du standard ecH-0031.
+
+----
+### Recommendations
 #### Inventaires des MGDM
 
-- Intégrer des liens entre les différentes ressources (geobasisdaten.ch, geocat.ch, WMS, WFS etc.)
+- Intégrer des liens entre les différentes ressources (modèles, geobasisdaten.ch, geocat.ch, WMS, WFS etc.)
+- Modèles
+  - Classes (cf [OeREBKRMtrsfr_V2_0](https://models.geo.admin.ch/V_D/OeREB/OeREBKRMtrsfr_V2_0.ili))?
+  - Méta-attributs?
 - Màj geobasisdaten.ch liens geocat.ch [type='model'](https://www.geocat.ch/geonetwork/srv/fre/csw?service=CSW&version=2.0.2&request=GetRecords&resultType=results&constraintLanguage=CQL_TEXT&constraint=dc:type='model'&constraint_language_version=1.1.0&typeNames=csw:Record)
 - Liens entres `dc:type` de geocat.ch ([model](https://www.geocat.ch/geonetwork/srv/fre/csw?service=CSW&version=2.0.2&request=GetRecords&resultType=results&constraintLanguage=CQL_TEXT&constraint=dc:type='model'&constraint_language_version=1.1.0&typeNames=csw:Record), [service](https://www.geocat.ch/geonetwork/srv/fre/csw?service=CSW&version=2.0.2&request=GetRecords&resultType=results&constraintLanguage=CQL_TEXT&constraint=dc:type='service'&constraint_language_version=1.1.0&typeNames=csw:Record), [dataset](https://www.geocat.ch/geonetwork/srv/fre/csw?service=CSW&version=2.0.2&request=GetRecords&resultType=results&constraintLanguage=CQL_TEXT&constraint=dc:type='dataset'&constraint_language_version=1.1.0&typeNames=csw:Record))
 
-Note: Il serait intéressant d'intégrer des liens entre les différentes ressources (geobasisdaten.ch, geocat.ch, WMS, WFS etc.) pour faciliter la navigation entre ces ressources. Cela est tout particulièrement vrai pour geocat qui distingue les modèles de données des géoservices et des datasets pour lesquels il n'existe pas de lien interne.
+Note: Il serait intéressant d'intégrer des liens entre les différentes ressources (modèles, geobasisdaten.ch, geocat.ch, WMS, WFS etc.) pour faciliter la navigation entre ces ressources. Cela est tout particulièrement vrai pour geocat qui distingue les modèles de données des géoservices et des datasets pour lesquels il n'existe pas de lien interne. Concerant les liens dans les modèles, solliciter les participant.e.s au workshop afin de déterminer si la meilleure solution est de documenter les liens dans le modèle ou en tant que méta-attributs.
 
 ----
 ### Recommendations
