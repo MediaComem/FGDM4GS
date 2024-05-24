@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File Dot_Graphics.xtf 2024-03-22 -->
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+  xmlns:geom="http://www.interlis.ch/geometry/1.0"
+  xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>Point_Graphics</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Basic example of Dot Graphics Signatures</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <StandardSigns ili:bid="Dot_Graphics">
+         <!-- Color Library -->
+         <Color ili:tid="1">
+            <Name>black</Name>
+            <L>0.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <!-- External Symbol Font "Symbols" -->
+         <Font ili:tid="301">
+            <Name>CadastraSymbol-Regular</Name>
+            <Internal>false</Internal>
+            <Type>text</Type>
+         </Font>
+         <!-- FontSymbol Library-->
+         <!-- External symbols -->
+         <!-- Tree -->
+         <FontSymbol ili:tid="201">
+            <Name>Dot</Name>            
+            <UCS4>0049</UCS4>
+            <Font ili:ref="301"></Font>
+         </FontSymbol>
+         <!-- Symbol Signs -->
+         <SymbolSign ili:tid="2001">
+            <ili:Name>Symbol</ili:Name>
+            <Scale>1.0</Scale>
+            <Color ili:ref="1"></Color>
+            <Symbol ili:ref="201"></Symbol>
+         </SymbolSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>

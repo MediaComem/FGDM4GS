@@ -1,0 +1,76 @@
+{
+    "@context": {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "myModel": "http://example.com#",
+      "Person": {
+        "@id": "myModel:Person",
+        "@type": "rdf:Class"
+      },
+      "Firstname": {
+        "@id": "myModel:Firstname",
+        "@type": "xsd:string"
+      },
+      "Lastname": {
+        "@id": "myModel:Lastname",
+        "@type": "xsd:string"
+      },
+      "City": {
+        "@id": "myModel:City",
+        "@type": "rdf:Class"
+      },
+      "PostalCode": {
+        "@id": "myModel:PostalCode",
+        "@type": "xsd:integer"
+      },
+      "CityName": {
+        "@id": "myModel:CityName",
+        "@type": "xsd:string"
+      },
+      "hostPerson": {
+        "@id": "myModel:hostPerson",
+        "@type": "rdf:Property"
+      },
+      "liveinCity": {
+        "@id": "myModel:liveinCity",
+        "@type": "rdf:Property"
+      }
+    },
+    "@graph": [
+      {
+        "@id": "myModel:Person",
+        "@type": "myModel:Person",
+        "Firstname": "",
+        "Lastname": ""
+      },
+      {
+        "@id": "myModel:City",
+        "@type": "myModel:City",
+        "PostalCode": {
+          "@value": 0,
+          "@type": "xsd:integer"
+        },
+        "CityName": ""
+      },
+      {
+        "@id": "myModel:CityPerson",
+        "@type": "rdf:Property",
+        "hostPerson": {
+          "@id": "myModel:Person",
+          "@type": "myModel:Person"
+        },
+        "liveinCity": {
+          "@id": "myModel:City",
+          "@type": "myModel:City"
+        }
+      }
+    ],
+    "views": [
+      {
+        "@id": "myModel:myView",
+        "description": "Projection of City where PostalCode > 1000",
+        "query": "SELECT * FROM City WHERE PostalCode > 1000"
+      }
+    ]
+  }
+  

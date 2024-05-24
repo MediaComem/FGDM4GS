@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File Surface_Graphics_Signatures.xtf 2024-03-22 -->
+
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+   xmlns:geom="http://www.interlis.ch/geometry/1.0"
+   xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>Polyline_Graphics</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Basic example of Polyline_Graphics Signatures</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <StandardSigns ili:bid="dashes">
+         <!-- Color Library -->
+         <Color ili:tid="1">
+            <Name>black</Name>
+            <L>0.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <!-- Polyline attributes -->
+         <PolylineAttrs ili:tid="4001">
+           <Width>0.01</Width>
+           <!-- Join type -->
+           <!-- Other possible values are: round, bevel -->
+           <Join>miter</Join>
+           <!-- Note: MiterLimit is only avalaible for miter join type -->
+           <MiterLimit>10.0</MiterLimit>
+            <!-- Cap type -->
+            <!-- Other possible value: round -->
+           <Caps>butt</Caps>
+         </PolylineAttrs>
+         <!-- Line Styles -->
+         <!-- Dashed -->
+         <LineStyle_Dashed ili:tid="22">
+            <Name>LineDashed_01</Name>
+            <Dashes>
+              <DashRec>
+                <DLength>0.1</DLength>
+              </DashRec>
+            </Dashes>
+            <Dashes>
+              <DashRec>
+                <DLength>0.1</DLength>
+              </DashRec>
+            </Dashes>
+            <Color ili:ref="1"></Color>
+          </LineStyle_Dashed>
+         <!-- Polyline Signs -->
+         <PolylineSign ili:tid="3001">
+            <ili:Name>dashed</ili:Name>
+            <Style ili:ref="22">
+              <PolylineSignLineStyleAssoc>
+                <Offset>0.0</Offset>
+              </PolylineSignLineStyleAssoc>
+            </Style>
+         </PolylineSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>

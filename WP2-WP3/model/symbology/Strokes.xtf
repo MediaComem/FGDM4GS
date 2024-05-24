@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File Strokes_Graphics_Signatures.xtf 2024-05-21 -->
+
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+   xmlns:geom="http://www.interlis.ch/geometry/1.0"
+   xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>Polyline_Graphics</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Basic example of Strokes Graphics Signatures</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <StandardSigns ili:bid="Strokes">
+         <!-- Color Library -->
+         <Color ili:tid="1">
+            <Name>black</Name>
+            <L>0.0</L>
+            <C>0.0</C>
+            <H>0.0</H>
+            <T>1.0</T>
+         </Color>
+         <!-- Polyline attributes -->
+         <PolylineAttrs ili:tid="4001">
+           <Width>0.01</Width>
+         </PolylineAttrs>
+         <!-- Line Styles -->
+         <LineStyle_Solid ili:tid="21">
+            <Name>Continuous</Name>
+            <Color ili:ref="1"></Color>
+            <LineAttrs ili:ref="4001"></LineAttrs>
+         </LineStyle_Solid>
+         <!-- Polyline Signs -->
+         <PolylineSign ili:tid="3001">
+            <ili:Name>continuous</ili:Name>
+            <Style ili:ref="21">
+              <PolylineSignLineStyleAssoc>
+              </PolylineSignLineStyleAssoc>
+            </Style>
+         </PolylineSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>
