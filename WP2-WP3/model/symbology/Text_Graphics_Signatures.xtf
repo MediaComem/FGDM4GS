@@ -17,13 +17,6 @@
       <StandardSigns ili:bid="REFHANDB00000002">
          <!-- Color Library -->
          <Color ili:tid="1">
-            <Name>white</Name>
-            <L>100.0</L>
-            <C>0.0</C>
-            <H>0.0</H>
-            <T>1.0</T>
-         </Color>
-         <Color ili:tid="2">
             <Name>black</Name>
             <L>0.0</L>
             <C>0.0</C>
@@ -54,7 +47,7 @@
             <Striked>false</Striked>
             <ClipBox>.0</ClipBox>
             <Font ili:ref="11"></Font>            
-            <Color ili:ref="2"></Color>
+            <Color ili:ref="1"></Color>
          </TextSign>
       </StandardSigns>
    </ili:datasection>

@@ -22,7 +22,7 @@ revealOptions: {
 - Confédération
 - Cantons
 
-Note: L'acronyme FGDM4GS signifie "Flat Geodata Models for Geoservices". Ce projet s'inscrit dans le contexte de la LGéo et de l'OGéo qui font mention de modèles de gédonnées minimaux (MGDM) définis par la Confédération que les Cantons se doivent de respecter.
+Note: L'acronyme FGDM4GS signifie "Flat Geodata Models for Geoservices". Ce projet s'inscrit dans le contexte de la LGéo et de l'OGéo qui font mention de modèles de géodonnées minimaux (MGDM) définis par la Confédération que les Cantons se doivent de respecter.
 
 ----
 ## Contexte du projet
@@ -53,7 +53,7 @@ Note: A ajouter plus tard
 - Représentation cartographique
 - Perspectives & recommendations
 
-Note: Le projet FGDM4GS vise à explorer les possiblités offertes par la définition de `VIEWS` pour harmoniser la publication de géoservices ainsi que les possiblités de représentation cartographique avec INTERLIS. Cela consiste à établir des règles de dénormalisation ou mise à plat des modèles par la définition de `VIEWS`. Il s'agit également de voir comment les modèles de représentation cartographique peuvent être définis avec INTERLIS. Enfin, il s'agit de formuler des perspectives et des recommandations pour l'utilisation d'INTERLIS dans le contexte de la publication de géoservices.
+Note: Le projet FGDM4GS vise à explorer les possibilités offertes par la définition de `VIEWS` pour harmoniser la publication de géoservices ainsi que les possibilités de représentation cartographique avec INTERLIS. Cela consiste à établir des règles de dénormalisation ou mise à plat des modèles par la définition de `VIEWS`. Il s'agit également de voir comment les modèles de représentation cartographique peuvent être définis avec INTERLIS. Enfin, il s'agit de formuler des perspectives et des recommandations pour l'utilisation d'INTERLIS dans le contexte de la publication de géoservices.
 
 ----
 ## Workplan
@@ -108,7 +108,7 @@ Note: Les `VIEWS` pourraient être utilisées pour harmoniser la publication de 
   <img src="assets/TabSheet.png" width=500 />
 </p>
 
-Note: En 2013, une recommandation a été publiée pour la représentation cartographique des MGDM. Cette recommandation propose une approche tabulaire pour la représentation cartographique. Cette approche est très peu utilisée (3% des entrées [geobasisdaten.ch](https://geobasisdaten.ch/)). Il serait intéressant de poser la question à S.Keller pourquoi l'approche tabulaire a été privilégiée.
+Note: En 2013, une recommandation a été publiée pour la représentation cartographique des MGDM. Cette recommandation propose une approche tabulaire pour la représentation cartographique. La consigne à l’époque avait été de ne pas utiliser INTERLIS malgré le fait qu’un modèle de symbologie existe depuis 2005. Il serait intéressant de poser la question aux responsables du projet pourquoi une telle décision a été prise. La recommandation propose une approche tabulaire pour la représentation cartographique qui s’avère cependant très peu utilisée (3% des entrées [geobasisdaten.ch](https://geobasisdaten.ch/)).
 
 ---
 ## Approche proposée
@@ -158,7 +158,7 @@ Note: Aucune vue n'a pu être trouvée dans les MGDM. Ces dernières dépendent 
   <img src="assets/MGDM-selection.svg" width=800 />
 </p>
 
-Note: Le schéma suivant illustre le concept de sélection de MGDM. Les informations de geobaissdaten.ch sont mises en relation avec les géoservices associés en sollicitant le service CSW (Catalog Service for the Web) de geocat.ch afin d'obtenir les attributs à intégrer dans les `VIEWS`.
+Note: Le schéma suivant illustre le concept de sélection de MGDM. Les informations de geobasisdaten.ch sont mises en relation avec les géoservices associés en sollicitant le service CSW (Catalog Service for the Web) de geocat.ch afin d'obtenir les attributs à intégrer dans les `VIEWS`.
 
 ----
 ### Sélection de MGDM
@@ -193,7 +193,7 @@ Note: Nous avons sélectionné les modèles de données suivants pour lesquels d
 - `AGGREGATION OF`
 - `INSPECTION OF`
 
-Note: Il existe **5** possibilités pour définir des `VIEWS` en INTERLIS. Elles seront présentés dans les sides suivantes.
+Note: Il existe **5** possibilités pour définir des `VIEWS` en INTERLIS. Elles seront présentés dans les slides suivantes.
 
 ----
 #### `PROJECTION OF`
@@ -234,26 +234,18 @@ Note: Selon le manuel de référence (refhb24), la vue projection (mot-clé PROJ
 
 ```interlis
 INTERLIS 2.3;
-
 MODEL Test  AT "http://www.interlis.ch/ili2c/tests/" VERSION "1"=
-
   TOPIC Base = 
-
     CLASS B =
       Attr1: TEXT*20;
       Attr2: TEXT*10;
     END B;
-
     CLASS C =
       Attr3: TEXT*30;
     END C;
-
   END Base;
-
   TOPIC Join =
-
     DEPENDS ON Test.Base;
-
     VIEW BC
       JOIN OF B ~ Test.Base.B,C ~ Test.Base.C (OR NULL);
       WHERE B->Attr1 == C->Attr3;
@@ -262,15 +254,13 @@ MODEL Test  AT "http://www.interlis.ch/ili2c/tests/" VERSION "1"=
         ALL OF B;
         ALL OF C;
     END BC;
-
   END Join;
-
 END Test.
 ```
 
 Lien vers le [modèle](https://github.com/claeis/ili2c/blob/c506ae466333d726b885ca7fae4ce6825e94176d/test/data/ili23/view/view_AcceptBasicJoinDef.ili)
 
-Note: Selon le manuel de référence (refhb24), la vue jonction (mot-clé JOIN OF) permet de former le produit cartésien (ou produit vectoriel) des classes de base (classe ou vue), c.-à-d. qu’il existe alors autant d’objets de la classe de jonction que de combinaisons d’objets des différentes classes de base. Le fait de lui associer une clause `WHERE` permet de définir les champs de jonction. Cela peut être utile pour associer pour par exemple des définir des statistiques cantonales en matière de votation compte tenu de différents critères.
+Note: Selon le manuel de référence (refhb24), la vue jonction (mot-clé JOIN OF) permet de former le produit cartésien (ou produit vectoriel) des classes de base (classe ou vue), c.-à-d. qu’il existe alors autant d’objets de la classe de jonction que de combinaisons d’objets des différentes classes de base. Le fait de lui associer une clause `WHERE` permet de définir les champs de jonction. Cela peut être utile pour associer, par exemple, des statistiques cantonales en matière de votation compte tenu de différents critères.
 ----
 #### `UNION OF`
 
@@ -564,7 +554,7 @@ Note: Afin de pouvoir définir des modèles graphiques, il est nécessaire de me
 - `SurfaceBoundary_Graphics` != `VIEW`
 - Selector & datatype
 
-Note: `SurfaceBoundary_Graphics` n'est pas utilisable si la géométrie de la surface concernée intervient dans une `VIEW` car cette dernière n'est ainsi plus décomposable. Les valeurs de paramètres sont limitées pour les sélecteurs dans le modèle graphique. Elles ne peuvent correspondre qu'a des valeurs numériques on des string basiques, sans espaces, ni accents, ni caractères spéciaux. Cela pose donc des contraintes pour le modèle de données comme par exemple les modèles du fichier [IVS_V3_gm.ili](https://github.com/MediaComem/FGDM4GS/tree/main/WP2-WP3/model/IVS_V2_1/IVS_V2_1/IVS_V3_gm.ili) ((`WHERE ivs_signatur_label == #Nationale Bedeutung, historischer Verlauf mit viel Substanz`)).
+Note: `SurfaceBoundary_Graphics` n'est pas utilisable si la géométrie de la surface concernée intervient dans une `VIEW` car cette dernière n'est ainsi plus décomposable. Les valeurs de paramètres sont limitées pour les sélecteurs dans le modèle graphique. Elles ne peuvent correspondre qu'a des valeurs numériques ou des string basiques, sans espaces, ni accents, ni caractères spéciaux. Cela pose donc des contraintes pour le modèle de données comme par exemple les modèles du fichier [IVS_V3_gm.ili](https://github.com/MediaComem/FGDM4GS/tree/main/WP2-WP3/model/IVS_V2_1/IVS_V2_1/IVS_V3_gm.ili) ((`WHERE ivs_signatur_label == #Nationale Bedeutung, historischer Verlauf mit viel Substanz`)).
 
 ----
 ### Premières conclusions
@@ -577,7 +567,7 @@ Note: `SurfaceBoundary_Graphics` n'est pas utilisable si la géométrie de la su
     - limitation à une seule Association
 - `JOIN OF` & `WHERE`
 
-Note: Aucune `VIEWS` n'a pu être trouvée dans les MGDM. Nous recommandoans la création de modèles dérivés pour la définition de `VIEWS` à des fins de publication de géoservices, ce, afin de ne pas altérer les modèles de bases. La méthode la plus simple est la vue projection (mot-clé PROJECTION OF) sur la base d’une association. Elle est cependant limitée à une association. La vue join (mot-clé JOIN OF) associée à la clause where (mot-clé WHERE) est une alternative pour les cas plus complexes. Il serait important que ili2db prenne en charge les `VIEWS` pour faciliter la publication de géoservices.
+Note: Aucune `VIEWS` n'a pu être trouvée dans les MGDM. Nous recommendons la création de modèles dérivés pour la définition de `VIEWS` à des fins de publication de géoservices, ce, afin de ne pas altérer les modèles de bases. La méthode la plus simple est la vue projection (mot-clé PROJECTION OF) sur la base d’une association. Elle est cependant limitée à une association. La vue join (mot-clé JOIN OF) associée à la clause where (mot-clé WHERE) est une alternative pour les cas plus complexes. Il serait important que ili2db prenne en charge les `VIEWS` pour faciliter la publication de géoservices.
 
 ----
 ### Modèles de représentation
@@ -587,7 +577,7 @@ Note: Aucune `VIEWS` n'a pu être trouvée dans les MGDM. Nous recommandoans la 
 
 ![Comparaison des concepts de représentation](assets/PortrayalConceptComparison.png)
 
-Note: INTERLIS définit un modèle graphique (`.ili`) et une signature graphique (`.xtf`). La signature graphique (`.ili`) est liée au modèle graphique (`.xtf`) lui même lié au Modèle de données. L'association du modèle graphique, des signatures graphiques et des données permettent le rendu cartographique. Le standard OGC SLD/SE définit deux types de styles cartographiques: `FeatureTypeStyle` et `CoverageStyle`. Le `FeatureTypeStyle` est utilisé pour définir le style d'une couche vecteur tandis que le `CoverageStyle` est utilisé pour définir le style d'une couche raster. La représenation Raster n'étant pour l'heure pas prise en charge par INTERLIS, nous nous intéressons en 1er lieu au `FeatureTypeStyle`. L'association d'un `FeatureTypeStyle` à des données permet le rendu cartographique.
+Note: INTERLIS définit un modèle graphique (`.ili`) et une signature graphique (`.xtf`). La signature graphique (`.ili`) est liée au modèle graphique (`.xtf`) lui même lié au Modèle de données. L'association du modèle graphique, des signatures graphiques et des données permettent le rendu cartographique. Le standard OGC SLD/SE définit deux types de styles cartographiques: `FeatureTypeStyle` et `CoverageStyle`. Le `FeatureTypeStyle` est utilisé pour définir le style d'une couche vecteur tandis que le `CoverageStyle` est utilisé pour définir le style d'une couche raster. La représentation Raster n'étant pour l'heure pas prise en charge par INTERLIS, nous nous intéressons en 1er lieu au `FeatureTypeStyle`. L'association d'un `FeatureTypeStyle` à des données permet le rendu cartographique.
 
 ----
 ### INTERLIS vs. SLD/SE & SymCore
@@ -1124,7 +1114,7 @@ Note: Dans le cas de modèles existants pour lesquels des géoservices ont pu ê
 - INTERLIS <-> OGC SLD/SE & SymCore encodings
   - Modèle données, modèle & signature graphique
 
-Note: Pour favoriser l'interopéralité entre INTERLIS et les autres langages de description de styles cartographiques, il s'agit en premier lieu de créer un mapping entre INTERLIS, OGC SE & SymCore. Cela afin de pouvoir intégrer INTERLIS à un convertisseur de styles cartographiques (p.ex. GeoStyler, bridge-style) ou à un éditeur de style cartographique (p.ex. GeoStyler, ou à un équivalent de pySLD). Finalement, afin de pouvoir convertir des feuilles de style vers le modèle et la signature graphique INTERLIS, il semble nécessaire de devoir recourir au modèle de données INTERLIS associé.
+Note: Pour favoriser l'interopérabilité entre INTERLIS et les autres langages de description de styles cartographiques, il s'agit en premier lieu de créer un mapping entre INTERLIS, OGC SE & SymCore. Cela afin de pouvoir intégrer INTERLIS à un convertisseur de styles cartographiques (p.ex. GeoStyler, bridge-style) ou à un éditeur de style cartographique (p.ex. GeoStyler, ou à un équivalent de pySLD). Finalement, afin de pouvoir convertir des feuilles de style vers le modèle et la signature graphique INTERLIS, il semble nécessaire de devoir recourir au modèle de données INTERLIS associé.
 
 ----
 ### Questions ouvertes

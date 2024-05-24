@@ -11,7 +11,7 @@
          <ili:model>Surface_Graphics</ili:model>
       </ili:models>
       <ili:sender>HEIG-VD</ili:sender>
-      <ili:comment>Basic example of Surface Hatching and Stipples Graphics Signatures</ili:comment>
+      <ili:comment>Basic example of Surface Hatching Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
       <StandardSigns ili:bid="REFHANDB00000002">
@@ -49,6 +49,10 @@
             <!-- Hatches -->
             <HatchOffset>2</HatchOffset>
             <!-- Hatch Symbol -->
+            <HatchSymb ili:ref="3001">
+               <SurfaceSignHatchSymbAssoc>
+               </SurfaceSignHatchSymbAssoc>
+            </HatchSymb>
          </SurfaceSign>
          <!-- Polyline Signs -->
          <PolylineSign ili:tid="3001">

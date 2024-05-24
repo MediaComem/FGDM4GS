@@ -30,13 +30,6 @@
             <H>0.0</H>
             <T>1.0</T>
          </Color>
-         <Color ili:tid="6">
-            <Name>black</Name>
-            <L>0.0</L>
-            <C>0.0</C>
-            <H>0.0</H>
-            <T>1.0</T>
-          </Color>
          <!-- Internal Symbol Font "Symbols" -->
          <Font ili:tid="10">
             <Name>Symbols</Name>
@@ -152,7 +145,7 @@
             </Geometry>
             <Geometry>
               <FontSymbol_Polyline>
-                <Color ili:ref="6"></Color>
+                <Color ili:ref="2"></Color>
                 <Geometry>
                   <geom:polyline>
                     <geom:coord>
