@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ili:transfer
+	xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+	xmlns:geom="http://www.interlis.ch/geometry/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:myModel="http://www.interlis.ch/xtf/2.4/myModel">
+	<ili:headersection>
+		<ili:models>
+			<ili:model>myModel</ili:model>
+		</ili:models>
+		<ili:sender>ili2gpkg-4.10.0</ili:sender>
+	</ili:headersection>
+	<ili:datasection>
+		<myModel:Test ili:bid="bid1">
+			<myModel:City ili:tid="tid1">
+				<myModel:PostalCode>3018</myModel:PostalCode>
+				<myModel:CityName>Bümpliz</myModel:CityName>
+				<!-- <myModel:Inhabitants>10000</myModel:Inhabitants> -->
+			</myModel:City>
+			<myModel:Person ili:tid="4eb9921e-31bc-4d92-a681-79612e952fe2">
+				<myModel:Firstname>John</myModel:Firstname>
+				<myModel:Lastname>Doe</myModel:Lastname>
+				<myModel:liveinCity ili:ref="tid1"></myModel:liveinCity>
+			</myModel:Person>
+		</myModel:Test>
+	</ili:datasection>
+</ili:transfer>

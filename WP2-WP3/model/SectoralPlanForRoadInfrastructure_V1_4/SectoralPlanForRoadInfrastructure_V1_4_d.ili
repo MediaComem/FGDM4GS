@@ -20,9 +20,9 @@ VERSION "2023-12-17" =
                     Document->Object == Object;
                     =
                 ATTRIBUTE
-                wkb_geometry := Facility -> Point;
-                !! wkb_geometry := Facility -> Line;           !! other option for the geometry 
-                !! wkb_geometry := Facility -> Surface;        !! other option for the geometry 
+                point_geometry := Facility -> Point;             !! point
+                polyline_geometry := Facility -> Line;           !! poyline 
+                polygone_geometry := Facility -> Surface;        !! polygone 
                 facname := Facility -> Name;
                 facstatus_tid := FacilityStatus -> StatusID;
                 facstatus_text := FacilityStatus -> Name;

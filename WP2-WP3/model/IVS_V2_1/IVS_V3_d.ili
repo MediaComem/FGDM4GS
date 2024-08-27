@@ -2,6 +2,7 @@ INTERLIS 2.4;
 MODEL IVS_V3_d
 AT "mailto:maxime.collombin@heig-vd.ch"
 VERSION "2023-12-04" = 
+    !! IMPORTS IVS_V3;
     IMPORTS IVS_V3;
     TOPIC IVS_Ik_d EXTENDS IVS_V3.IVS_Inventarkarte =
         VIEW ivs_nat

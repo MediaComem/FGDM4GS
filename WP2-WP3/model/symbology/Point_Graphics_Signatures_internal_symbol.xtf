@@ -14,7 +14,7 @@
       <ili:comment>Point_Graphics Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
-      <StandardSigns ili:bid="REFHANDB00000002">
+      <StandardSigns ili:bid="Point_Graphics_Internal_Symbol">
          <!-- Color Library -->
          <Color ili:tid="1">
             <Name>white</Name>

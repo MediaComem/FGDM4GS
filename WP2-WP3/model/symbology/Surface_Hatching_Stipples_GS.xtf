@@ -14,7 +14,7 @@
       <ili:comment>Basic example of Surface Hatching Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
-      <StandardSigns ili:bid="REFHANDB00000002">
+      <StandardSigns ili:bid="Surface_Graphics_Hatching">
          <!-- Color Library -->
          <Color ili:tid="1">
             <Name>white</Name>

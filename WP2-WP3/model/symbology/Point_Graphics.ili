@@ -16,10 +16,10 @@ MODEL Point_Graphics (en) AT "http://www." VERSION "2024-01-25" =
             DEPENDS ON Point.Point;
             GRAPHIC Point_Graphics
                 BASED ON Point.Point.Point =
-                Symbol OF StandardSymbology.StandardSigns.SymbolSign: (
-                    Geometry := Geometry;    
-                    Priority := 1
-                );
+                !! Symbol OF StandardSymbology.StandardSigns.SymbolSign: (
+                !!     !! Geometry := Geometry;    
+                !!     Priority := 1
+                !! );
             END Point_Graphics;            
         END Graphics;
 END Point_Graphics.

@@ -23,7 +23,6 @@ AT "mailto:maxime.collombin@heig-vd.ch"
           Geometry := wkb_geometry;
           Priority := 1          
         );
-
       Symbol OF StandardSymbology.StandardSigns.PolylineSign: (
         Geometry := wkb_geometry;
         Priority := 1

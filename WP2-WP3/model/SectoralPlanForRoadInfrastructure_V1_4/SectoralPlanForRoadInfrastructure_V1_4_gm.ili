@@ -9,4 +9,14 @@ AT "mailto:maxime.collombin@heig-vd.ch"
   VERSION "2024-01-04" =
   IMPORTS SectoralPlanForRoadInfrastructure_V1_4_d;
   IMPORTS StandardSymbology;
+  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    !! Facility
+    !!-----------------------------------------------!!
+    !! FacilityKind
+    !! FacilityStatus
+    OBJECTS OF PolylineSign: fs1, fs2, fs3, fs4, fs5;
+    OBJECTS OF SymbolSign: fs1, fs2, fs3, fs4, fs5;
+    !! PlanningMeasure
+    !!-----------------------------------------------!!
+    OBJECTS OF SurfaceSign: fs1, fs2, fs3, fs4, fs5;
 END SectoralPlanForRoadInfrastructure_V1_4_gm.

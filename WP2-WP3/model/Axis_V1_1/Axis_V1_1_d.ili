@@ -18,6 +18,7 @@ MODEL Axis_LV95_V1_1_d (en)
           Strassennummer := Axis -> AxisName;
           Bezeichnung := Axis -> AxisNameLong;
           Positionscode := Axis -> AxisPositionCode;
+          Type := Axis -> AxisType;
           Bezugspunkt_Name := Sector -> SectorName;
           Kilometerwert_km := Sector -> Km;
           Sektorlange_m := Sector -> SectorLength;

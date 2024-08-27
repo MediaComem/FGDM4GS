@@ -7,6 +7,14 @@ INTERLIS 2.3;
 MODEL Axis_V1_1_gm
 AT "mailto:maxime.collombin@heig-vd.ch"
   VERSION "2024-01-04" =
-  IMPORTS Axis_V1_1;
+  IMPORTS Axis_LV95_V1_1_d;
   IMPORTS StandardSymbology;
+  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    OBJECTS OF PolylineSign: Strasse, Strasse (Unterhaltsachse) ;
+    /*
+    Erreur de parsing pour la valeur: "Strasse (Unterhaltsachse)"
+    .\Axis_V1_1_gm.ili:13:expecting ';', found '('...compiler run failed 2024-01-04 10:15:12
+     */
+  TOPIC Graphics =
+  END Graphics;
 END Axis_V1_1_gm.

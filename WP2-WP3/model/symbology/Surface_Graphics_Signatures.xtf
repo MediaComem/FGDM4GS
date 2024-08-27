@@ -14,7 +14,7 @@
       <ili:comment>Basic example of Surface_Graphics Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
-      <StandardSigns ili:bid="REFHANDB00000002">
+      <StandardSigns ili:bid="Surface_Graphics">
          <!-- Color Library -->
          <Color ili:tid="1">
             <Name>white</Name>

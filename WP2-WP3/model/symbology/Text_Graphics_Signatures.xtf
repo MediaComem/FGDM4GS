@@ -14,7 +14,7 @@
       <ili:comment>Basic example of Text_Graphics Signatures</ili:comment>
    </ili:headersection>
    <ili:datasection>
-      <StandardSigns ili:bid="REFHANDB00000002">
+      <StandardSigns ili:bid="Text_Graphics">
          <!-- Color Library -->
          <Color ili:tid="1">
             <Name>black</Name>

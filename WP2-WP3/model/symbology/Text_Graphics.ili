@@ -27,13 +27,13 @@ MODEL Text_Graphics (en) AT "http://www." VERSION "2024-01-25" =
             DEPENDS ON Point.Point;
             GRAPHIC Text_Graphics
                 BASED ON Point.Point.Point =
-                Symbol OF StandardSymbology.StandardSigns.TextSign: (
-                    Sign := {Linefont_18};
-                    Txt := Name;
-                    Geometry := Geometry; !! Note: a Textsymbolizer can be applied to any type of geometry
-                    Rotation := Ori;  
-                    Priority := 1
-                );
+                !! Symbol OF StandardSymbology.StandardSigns.TextSign: (
+                !!     Sign := {Linefont_18};
+                !!     Txt := Name;
+                !!     Geometry := Geometry; !! Note: a Textsymbolizer can be applied to any type of geometry
+                !!     Rotation := Ori;  
+                !!     Priority := 1
+                !! );
             END Text_Graphics;            
         END Graphics;
 END Text_Graphics.

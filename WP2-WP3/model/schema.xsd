@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="http://www.interlis.ch/xtf/2.4/myModel" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.interlis.ch/xtf/2.4/myModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="schema0.xsd" namespace="http://www.interlis.ch/xtf/2.4/INTERLIS" />
+  <xs:element name="Test">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="City">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PostalCode" type="xs:unsignedShort" />
+              <xs:element name="CityName" type="xs:string" />
+            </xs:sequence>
+            <xs:attribute xmlns:q1="http://www.interlis.ch/xtf/2.4/INTERLIS" ref="q1:tid" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Person">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Firstname" type="xs:string" />
+              <xs:element name="Lastname" type="xs:string" />
+              <xs:element name="liveinCity">
+                <xs:complexType>
+                  <xs:attribute xmlns:q2="http://www.interlis.ch/xtf/2.4/INTERLIS" ref="q2:ref" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute xmlns:q3="http://www.interlis.ch/xtf/2.4/INTERLIS" ref="q3:tid" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute xmlns:q4="http://www.interlis.ch/xtf/2.4/INTERLIS" ref="q4:bid" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
