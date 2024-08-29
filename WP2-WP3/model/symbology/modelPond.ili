@@ -1,0 +1,48 @@
+INTERLIS 2.4;
+!! Définition du modèle "pond"
+MODEL pond (en)
+AT "http://www/"
+VERSION "2024_08_28" =
+    IMPORTS GeometryCHLV95_V2;
+    !! Définition du TOPIC "pond" (à vérifier si obligatoire dans grammaire)
+    TOPIC pond =
+        !! Définition de la classe "pond"
+        CLASS pond =
+            Geometry : SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V2.Coord2 WITHOUT OVERLAPS>0.05;
+            Name : TEXT*80;
+            Species: 0 .. 9999;
+            Remark : TEXT*80;
+        END pond;
+    END pond;
+END pond.
+!! Définition du modèle graphique
+MODEL pondStyle (en)
+AT "http://www."
+VERSION "2024-008-28" =
+    IMPORTS pond;
+    IMPORTS StandardSymbology;
+    !! Le SIGN BASKET permet de déclarer les signatures graphiques (par type)
+    SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+        !! OBJECTS OF PolylineSign: continuous
+        OBJECTS OF SurfaceSign: goodhealth;
+        !! Définition du TOPIC "Graphics"
+        TOPIC Graphics =
+            DEPENDS ON pond.pond;
+            GRAPHIC SurfaceGraphics
+                BASED ON pond.pond.pond =
+                !! Défintions des DrawingRule pour les différentes signatures graphiques
+                !! DrawingRule pour le SurfaceSign
+                PondSign OF StandardSymbology.StandardSigns.SurfaceSign:
+                    WHERE Species >0 (
+                        !! Nom de la DrawingRule (à confirmer) déclarer au niveau de la BASKET permettant de faire le lien avec le xtf
+                        Sign := {goodhealth};
+                        Geometry := Geometry;
+                        Priority := 1);
+                !! DrawingRule pour le PolylineSign
+                !! Boundary OF StandardSymbology.StandardSigns.PolylineSign: (
+                !!     Sign := {continuous};
+                !!     Geometry := Geometry;
+                !!     Priority := 101);
+            END SurfaceGraphics; 
+        END Graphics;
+END pondStyle.

@@ -29,11 +29,5 @@ AT "mailto:maxime.collombin@heig-vd.ch"
           Geometry := wkb_geometry;
           Priority := 100);
     END Surface_Graphics;
-    /*
-    Surface_Boundary ne peut être défini ni à partir de Planungszonen_V2_d_B.PZ_d.view_pz,
-    ni à partir de Planungszonen_V2_d_A.PZ_d.view_pz car il n'est pas possible de décomposer
-    la géométrie d'une surface intervenant dans une `VIEW`. La représentation des limites de surface
-    n'est donc intégrée ni dans le modèle graphique, ni dans la signature graphique.
-    */
   END Graphics;
 END Planungszonen_V2_gm.

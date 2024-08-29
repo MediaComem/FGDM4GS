@@ -49,10 +49,9 @@
             <!-- Hatches -->
             <HatchOffset>2</HatchOffset>
             <!-- Hatch Symbol -->
-            <HatchSymb ili:ref="3001">
-               <SurfaceSignHatchSymbAssoc>
-               </SurfaceSignHatchSymbAssoc>
-            </HatchSymb>
+            <HatchSymb ili:ref="3001"></HatchSymb>
+            <!-- Border Style definition -->
+            <Border ili:ref="3001"></Border>
          </SurfaceSign>
          <!-- Polyline Signs -->
          <PolylineSign ili:tid="3001">

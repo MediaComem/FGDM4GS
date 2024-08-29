@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ili:transfer xmlns:ili="http://www.interlis.ch/xtf/2.4/INTERLIS"
+   xmlns:geom="http://www.interlis.ch/geometry/1.0"
+   xmlns="http://www.interlis.ch/xtf/2.4/StandardSymbology"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ili:headersection>
+      <ili:models>
+         <ili:model>pondStyle</ili:model>
+      </ili:models>
+      <ili:sender>HEIG-VD</ili:sender>
+      <ili:comment>Signatures graphiques liées au modèle pond</ili:comment>
+   </ili:headersection>
+   <ili:datasection>
+      <!-- Define the StandardSigns -->
+      <StandardSigns ili:bid="Symb01">
+         <!-- Définition de la couleur -->
+          <Color ili:tid="1">
+            <Name>Bleu</Name>
+            <L>81.69</L>
+            <C>34.96</C>
+            <H>308.4</H>
+            <T>0.6</T>
+          </Color>
+         <!-- Define the polyline attributes -->
+         <PolylineAttrs ili:tid="4001">
+            <Width>2</Width>
+            <Join>round</Join>
+            <Caps>round</Caps>
+         </PolylineAttrs>
+         <!-- Définition du style de ligne -->
+         <LineStyle_Solid ili:tid="21">
+            <Name>LineStyle</Name>
+            <Color ili:ref="1"></Color>
+            <LineAttrs ili:ref="4001"></LineAttrs>
+         </LineStyle_Solid>
+         <!-- Définition des signatures graphiques -->
+         <!-- Défintion des signatures graphiques pour les lignes aka Border (utilisées pour le Border du SurfaceSign)-->
+         <PolylineSign ili:tid="3001">
+            <ili:Name>continuous</ili:Name>
+            <Style ili:ref="21">
+              <PolylineSignLineStyleAssoc>
+                <Offset>0.0</Offset>
+              </PolylineSignLineStyleAssoc>
+            </Style>
+         </PolylineSign>
+         <!-- Définition des signatures graphiques pour les surfaces -->
+         <SurfaceSign ili:tid="5001">
+            <ili:Name>goodhealth</ili:Name>
+            <FillColor ili:ref="1"></FillColor>
+            <!-- Référence à la signature graphique pour les lignes (Border) -->
+            <Border ili:ref="3001"></Border>
+         </SurfaceSign>
+      </StandardSigns>
+   </ili:datasection>
+</ili:transfer>

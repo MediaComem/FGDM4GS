@@ -8,7 +8,6 @@
   <ili:headersection>
     <ili:models>
       <ili:model>StandardSymbology</ili:model>
-      <!-- Clarify if the reference to the grafic model is needed -->
       <ili:model>Planungszonen_V2_gm</ili:model>
     </ili:models>
     <ili:sender>HEIG-VD</ili:sender>
@@ -16,64 +15,72 @@
   </ili:headersection>
   <ili:datasection>
     <!-- Define the StandardSigns -->
-    <StandardSigns ili:bid="Symb01">
+    <StandardSigns ili:bid="PlanungszonenSymb">
         <!-- Define the LCh color values with transparency-->
         <!-- See https://lch.oklch.com/ for conversion -->
         <!-- Note: Propose a modification to the StandardSymbology model to include other Color Spaces -->
-        <Color ili:tid="1">
+        <!-- Farbdefinition -->
+        <Color ili:tid="KantonFarbe">
             <Name>C-Violet_moyen</Name>
             <L>81.69</L>
             <C>34.96</C>
             <H>308.4</H>
             <T>0.6</T>
         </Color>
-        <Color ili:tid="2">
+        <Color ili:tid="GemeindeFarbe">
             <Name>C-Violet clair</Name>
             <L>88.57</L>
             <C>21.09</C>
             <H>306.48</H>
             <T>0.6</T>
         </Color>
-        <Color ili:tid="3">
+        <Color ili:tid="AndereFarbe">
             <Name>C-Pourpre</Name>
             <L>94.86</L>
             <C>8.59</C>
             <H>297.89</H>
             <T>0.6</T>
         </Color>
-        <Color ili:tid="4">
+        <Color ili:tid="BorderFarbe">
             <Name>C-Violet foncé</Name>
             <L>73.7</L>
             <C>37.41</C>
             <H>301.72</H>
             <T>1</T>
         </Color>
-        <!-- Define the polyline attributes -->
-        <PolylineAttrs ili:tid="4001">
-            <Width>2</Width>
-            <Join>round</Join>
-            <Caps>round</Caps>
-        </PolylineAttrs>
-        <!-- Define the surface signs -->
         <!-- The reference to style ids in the "Layers" tab of the Excel file seems to be missing. -->
-        <!-- Clarify the implicit tid numbering convention -->
-        <SurfaceSign ili:tid="5001">
+        <!-- Define the Fills -->
+        <SurfaceSign ili:tid="KantonFill">
             <ili:Name>Kanton</ili:Name>
-            <FillColor ili:ref="1"></FillColor>
-        </SurfaceSign>
-        <SurfaceSign ili:tid="5002">
+            <FillColor ili:ref="KantonFarbe"></FillColor>
+          </SurfaceSign>
+          <SurfaceSign ili:tid="GemeindeFill">
             <ili:Name>Gemeinde</ili:Name>
-            <FillColor ili:ref="2"></FillColor>
-        </SurfaceSign>
-        <SurfaceSign ili:tid="5003">
-            <ili:Name>andere</ili:Name>
-            <FillColor ili:ref="3"></FillColor>
-        </SurfaceSign>
-        <!-- Cannot be used here as it cannot be defined in the graphic model -->
-        <!-- <FontSymbol_Polyline>
-            <Color ili:ref="3"></Color>
-            <LineAttrs ili:ref="4001"></LineAttrs>
-        </FontSymbol_Polyline> -->
+            <FillColor ili:ref="GemeindeFarbe"></FillColor>
+          </SurfaceSign>
+          <SurfaceSign ili:tid="AndereFill">
+            <ili:Name>Andere</ili:Name>
+            <FillColor ili:ref="AndereFarbe"></FillColor>
+          </SurfaceSign>
+          <!-- Define the BorderWidth -->
+          <PolylineAttrs ili:tid="BorderWidth">
+              <Width>2</Width>
+          </PolylineAttrs>
+           <!-- Define the BorderStyle -->
+           <LineStyle_Solid ili:tid="BorderStyle">
+              <Name>BorderStyle</Name>
+              <Color ili:ref="KantonFarbe"></Color>
+              <LineAttrs ili:ref="BorderWidth"></LineAttrs>
+           </LineStyle_Solid>
+          <!-- Define the Border  -->
+          <PolylineSign ili:tid="Border">
+              <ili:Name>Border</ili:Name>
+              <Style ili:ref="BorderStyle">
+                <PolylineSignLineStyleAssoc>
+                  <Offset>0.0</Offset>
+                </PolylineSignLineStyleAssoc>
+              </Style>
+          </PolylineSign>
     </StandardSigns>
   </ili:datasection>
 </ili:transfer>
