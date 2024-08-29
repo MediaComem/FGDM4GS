@@ -2,7 +2,7 @@ INTERLIS 2.4;
 !! Définition du modèle "pond"
 MODEL pond (en)
 AT "http://www/"
-VERSION "2024_08_28" =
+VERSION "2024-08-28" =
     IMPORTS GeometryCHLV95_V2;
     !! Définition du TOPIC "pond" (à vérifier si obligatoire dans grammaire)
     TOPIC pond =
@@ -18,7 +18,7 @@ END pond.
 !! Définition du modèle graphique
 MODEL pondStyle (en)
 AT "http://www."
-VERSION "2024-008-28" =
+VERSION "2024-08-28" =
     IMPORTS pond;
     IMPORTS StandardSymbology;
     !! Le SIGN BASKET permet de déclarer les signatures graphiques (par type)
@@ -38,11 +38,6 @@ VERSION "2024-008-28" =
                         Sign := {goodhealth};
                         Geometry := Geometry;
                         Priority := 1);
-                !! DrawingRule pour le PolylineSign
-                !! Boundary OF StandardSymbology.StandardSigns.PolylineSign: (
-                !!     Sign := {continuous};
-                !!     Geometry := Geometry;
-                !!     Priority := 101);
             END SurfaceGraphics; 
         END Graphics;
 END pondStyle.
