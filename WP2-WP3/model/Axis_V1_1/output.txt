@@ -1,0 +1,11 @@
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.RoadOwner>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.Database>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.PlateType>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.AxisStatus>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.AxisType>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.MarkerType>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.PlateFixationType>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.PlateLocationType>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.PlateLabelType>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.SectorMaterializationType>
+<{http://www.interlis.ch/INTERLIS2.3}AxisCatalogs_V1_1.AxisCatalogs.CaptureMethod>

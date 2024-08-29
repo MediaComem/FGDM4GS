@@ -169,7 +169,7 @@
          <!-- Polyline Signs -->
          <PolylineSign ili:tid="3001">
             <ili:Name>continuous</ili:Name>
-            <Style ili:ref="21">
+            <Style ili:ref="23">
               <PolylineSignLineStyleAssoc>
                 <Offset>0.0</Offset>
               </PolylineSignLineStyleAssoc>

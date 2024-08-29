@@ -30,7 +30,7 @@ VERSION "2024-08-28" =
             DEPENDS ON pond.pond;
             GRAPHIC SurfaceGraphics
                 BASED ON pond.pond.pond =
-                !! Défintions des DrawingRule pour les différentes signatures graphiques
+                !! Définitions des DrawingRule pour les différentes signatures graphiques
                 !! DrawingRule pour le SurfaceSign
                 PondSign OF StandardSymbology.StandardSigns.SurfaceSign:
                     WHERE Species >0 (

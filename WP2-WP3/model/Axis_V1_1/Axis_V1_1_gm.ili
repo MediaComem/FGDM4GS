@@ -8,13 +8,39 @@ MODEL Axis_V1_1_gm
 AT "mailto:maxime.collombin@heig-vd.ch"
   VERSION "2024-01-04" =
   IMPORTS Axis_LV95_V1_1_d;
+  !! L'import du modèle Axis_LV95_V1_1 est également nécessaire vis à vis de la classe Sector 
+  IMPORTS Axis_LV95_V1_1;
   IMPORTS StandardSymbology;
-  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
-    OBJECTS OF PolylineSign: Strasse, Strasse (Unterhaltsachse) ;
-    /*
-    Erreur de parsing pour la valeur: "Strasse (Unterhaltsachse)"
-    .\Axis_V1_1_gm.ili:13:expecting ';', found '('...compiler run failed 2024-01-04 10:15:12
-     */
+  !! SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    !! !! Définition des objets «segment d'axe» (PolylineSign) sur la base de la classe AxisCatalogs_V1_1.AxisCatalogs.AxisType du catalogue AxisCatalogs_V1_1
+    !! OBJECTS OF PolylineSign: 89aa138a-999a-554e-b120-13721dbbb055, 1f22835b-e726-bd40-b95d-5b5de18db20a, bf44d30a-b831-c242-beb3-1b252d7be688  ;
+    !! !! Les TID ne sont pas supportés par la DrawingRule (erreur: .\Axis_V1_1_gm.ili:15:expecting NAME, found '89')
+    !! !! Définition des objets «secteur» (Point de repère) (SymbolSign)
+    !! OBJECTS OF SymbolSign: ;
+    !! !! La définition de cette DrawingRule n'est pas possible car elle nécessite de recourir à des ParameterValues
+  !! Définition du TOPIC pour les GRAPHIC ( ~ styleSheets)
   TOPIC Graphics =
+    DEPENDS ON Axis_LV95_V1_1_d.Axis_d;
+    DEPENDS ON Axis_LV95_V1_1.Axis; 
+    !! Définition du GRAPHIC (styleSheet) pour les segments d'axe
+    GRAPHIC AxeSegment
+      BASED ON Axis_LV95_V1_1_d.Axis_d.view_Axis =
+      !! Définitions des DrawingRules (stylingRules)
+    END AxeSegment;
+    !! Définition du GRAPHIC (styleSheet) pour les points de repère
+    !! Définitions impossibles en raison des TID non supportées
+    GRAPHIC Sector
+      BASED ON Axis_LV95_V1_1.Axis.Sector =
+      !! Définitions des DrawingRules (stylingRules)
+      !! Définitions impossibles car nécessitant l'accès aux valeurs de l'attribut Sequence de la classe Sector (ParameterValue)
+    END Sector;
+    !! Définition du GRAPHIC (styleSheet) «point de calage» (impossible faute d'informations disponibles)
+    !! GRAPHIC Kalibrierungspunkt
+    !!   BASED ON <classe & attribut non spécifiés> =
+    !! END Kalibrierungspunkt;
+    !! Définition du GRAPHIC (styleSheet) «matérialisation physique» (impossible faute d'informations disponibles)
+    !! GRAPHIC PhysikalischeVersicherung
+    !!   BASED ON <classe & attribut non spécifiés> =
+    !! END PhysikalischeVersicherung;
   END Graphics;
 END Axis_V1_1_gm.

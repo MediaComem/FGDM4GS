@@ -1,0 +1,34 @@
+INTERLIS 2.3;
+
+!! Version | Date       | Who     | Modification
+!!-------------------------------------------------------------------------------------------
+!! 1.O     | 2024-01-04 | HEIG-VD | - Création du modèle
+
+MODEL IVS_V2_1_gm
+AT "mailto:maxime.collombin@heig-vd.ch"
+  VERSION "2024-01-04" =
+  IMPORTS IVS_V2_1;
+  IMPORTS StandardSymbology;
+  SIGN BASKET StandardSymbology ~ StandardSymbology.StandardSigns
+    OBJECTS OF SymbolSign: A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T
+    OBJECTS OF PolylineSign: SIGLIN_103,SIGLIN_102,SIGLIN_101,SIGLIN_203,SIGLIN_202,SIGLIN_201,SIGLIN_303,SIGLIN_302,SIGLIN_301;
+  TOPIC Graphics =
+    DEPENDS ON IVS_V2_1.IVS_Inventarkarte;
+    GRAPHIC Polyline_Graphics
+      BASED ON IVS_V2_1.IVS_Inventarkarte.ivs_linienobjekte_lv95 =
+      SIGLIN_302 OF StandardSymbology.StandardSigns.PolylineSign:
+        WHERE Role_ivs_signatur_linie == #SIGLIN_302 (
+          Sign := {SIGLIN_302};
+          Priority := 1
+        );
+    END Polyline_Graphics;
+    GRAPHIC Point_Graphics
+      BASED ON IVS_V2_1.IVS_Inventarkarte.ivs_punktobjekte_lv95 =
+      A OF StandardSymbology.StandardSigns.SymbolSign:
+        WHERE Role_ivs_signatur_punkt == #A (
+          Sign := {A};
+          Priority := 1
+        );
+    END Point_Graphics;
+  END Graphics;
+END IVS_V2_1_gm.

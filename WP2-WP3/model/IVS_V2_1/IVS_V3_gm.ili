@@ -18,15 +18,20 @@ AT "mailto:maxime.collombin@heig-vd.ch"
       BASED ON IVS_V3_d.IVS_Ik_d.ivs_nat =
       !! Définition du sélecteur impossible en raison d'une incompatibilité du modèle (datatype incompatible)
       SIGLIN_302 OF StandardSymbology.StandardSigns.PolylineSign:
-        WHERE ivs_signatur_label == #test_text (
-          Sign := {SIGLIN_302};
+        WHERE Role_ivs_signatur_linie == #SIGLIN_301 (
+          Sign := {SIGLIN_301};
           Geometry := wkb_geometry;
           Priority := 1          
         );
-      Symbol OF StandardSymbology.StandardSigns.PolylineSign: (
-        Geometry := wkb_geometry;
-        Priority := 1
-      );
+      !! SIGNLIN_103 OF StandardSymbology.StandardSigns.PolylineSign:
+      !!   WHERE Role_ivs_signatur_linie == #89aa138a-999a-554e-b120-13721dbbb055 (
+      !!   Geometry := wkb_geometry;
+      !!   Priority := 1
+      !! );
+      !! Symbol OF StandardSymbology.StandardSigns.PolylineSign: (
+      !!   Geometry := wkb_geometry;
+      !!   Priority := 1
+      !! );
     END Polyline_Graphics;
   END Graphics;
 END IVS_V3_gm.

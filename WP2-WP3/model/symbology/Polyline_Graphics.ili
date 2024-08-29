@@ -14,8 +14,10 @@ MODEL Polyline_Graphics (en) AT "http://www." VERSION "2024-01-25" =
     IMPORTS StandardSymbology;
         TOPIC Graphics =
             DEPENDS ON Polyline.Polyline;
+            !! Définition du graphique (GraphicDef, équivalent à un styleSheet)
             GRAPHIC Polyline_Graphics
                 BASED ON Polyline.Polyline.Polyline =
+                !! Définition de la DrawingRule (équivalent à une stylingRule)
                 Symbol OF StandardSymbology.StandardSigns.PolylineSign: (
                     Geometry := Geometry;
                     Priority := 1
